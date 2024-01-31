@@ -1,0 +1,25 @@
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+
+const schema = new Schema(
+    {
+        category:{
+            type: String,
+            required: true
+        },
+        name:{
+            type: String,
+            required: true
+        },
+        price:{
+            type: Number,
+            required: true
+        }
+    },
+
+    {
+        timestamps: true
+    }
+) 
+
+module.exports = new mongoose.model('productModel', schema)
