@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const ProductForm = () => {
-  const [product, setProduct] = useState({ category: '', name: '', price: '' });
+  const [product, setProduct] = useState({ category: '', name: '', price: '', quantity:'' });
   const [error, setError] = useState(null)
 
   const handleChange = (e) => {
@@ -26,11 +26,13 @@ const ProductForm = () => {
             setError(json.error)
         }
         else{
-            setError(null);
-            setProduct({ category: '', name: '', price: '' })
+            setError("Successfully added");
+            setProduct({ category: '', name: '', price: '',  quantity:''  })
             //dispatch({type:'CREATE_WORKOUT', payload: json})
             console.log(json);
         }
+
+
   };
 
   return (
@@ -54,10 +56,18 @@ const ProductForm = () => {
           className="submitForm"
         />
         <input
-          type="text"
+          type="number"
           name="price"
           placeholder="Price"
           value={product.price}
+          onChange={handleChange}
+          className="submitForm"
+        />
+        <input
+          type="Number"
+          name="quantity"
+          placeholder="Quantity"
+          value={product.quantity}
           onChange={handleChange}
           className="submitForm"
         />
@@ -67,8 +77,13 @@ const ProductForm = () => {
         >
           Add Product
         </button>
+
+      {
+        error && error.charAt(0)==='S' ? (<div className="text-green-700 mt-2">{error}</div>) :(<div className="text-red-700 mt-2">{error}</div>)
+      }
+      
+
       </form>
-      <div className="text-red">{error}</div>
     </div>
   );
 };
