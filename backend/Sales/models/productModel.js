@@ -14,12 +14,187 @@ const schema = new Schema(
         price:{
             type: Number,
             required: true
+        },
+        quantity:{
+            type: Number,
+            required: true
         }
     },
-
+    {
+        timestamps: true
+    }
+) 
+/*
+const saleSchema = new Schema(
+    {
+        category:{
+            type: String,
+            required: true
+        },
+        name:{
+            type: String,
+            required: true
+        },
+        price:{
+            type: Number,
+            required: true
+        },
+        quantity:{
+            type: Number,   //how much quantity sold
+            required: true
+        }
+    },
     {
         timestamps: true
     }
 ) 
 
-module.exports = new mongoose.model('productModel', schema)
+const receiveSchema = new Schema(
+    {
+        category:{
+            type: String,
+            required: true
+        },
+        name:{
+            type: String,
+            required: true
+        },
+        price:{
+            type: Number,
+            required: true
+        },
+        quantity:{
+            type: Number,   //how much items received
+            required: true
+        }
+    },
+    {
+        timestamps: true
+    }
+) 
+
+const orderSchema = new Schema(
+    {
+        category:{
+            type: String,
+            required: true
+        },
+        name:{
+            type: String,
+            required: true
+        },
+        price:{
+            type: Number,
+            required: true
+        },
+        quantity:{
+            type: Number,   //how much quantity ordered
+            required: true
+        }
+    },
+    {
+        timestamps: true
+    }
+) 
+*/
+
+//each item=product+quantity
+const itemSchema = new Schema(
+    {
+        product: {
+            type: Schema.Types.ObjectId,
+            ref: 'productModel',
+            required: true
+        },
+        changed_quantity:{
+            type: Number,
+            required: true
+        }
+    }
+)
+
+//for sale records
+const saleSchema = new Schema(
+    {
+        customer_name: {
+            type: String,
+            required: true
+        },
+        customer_contact:{
+            type: String,
+            required: true
+        },
+        items: {
+            type:[itemSchema],
+            required: true
+        }
+    },
+    {
+        timestamps: true
+    }
+)
+
+//for receive records
+const receiveSchema = new Schema(
+    {
+        items: {
+            type:[itemSchema],
+            required: true
+        }
+    },
+    {
+        timestamps: true
+    }
+)
+
+//for receive records
+const orderSchema = new Schema(
+    {
+        items: {
+            type:[itemSchema],
+            required: true
+        }
+    },
+    {
+        timestamps: true
+    }
+)
+
+
+productModel = mongoose.model('productModel', schema)
+itemModel= mongoose.model('itemModel', itemSchema)
+saleModel = mongoose.model('saleModel', saleSchema)
+receiveModel = mongoose.model('receiveModel', receiveSchema)
+orderModel = mongoose.model('orderModel', orderSchema)
+
+module.exports = { productModel, saleModel, receiveModel, orderModel,itemModel }
+/*
+const product1= this.productModel.create({
+    "category": "juice",
+    "name": "grape",
+    "price": 20,
+    "quantity": 10
+});
+const product2= this.productModel.create({
+    "category": "juice",
+    "name": "malta",
+    "price": 20,
+    "quantity": 10
+});
+*/
+
+/*
+const item1= this.itemModel.create({
+    "product": product1,
+    quantity:2
+})
+const item2= this.itemModel.create({
+    "product": product2,
+    quantity:2
+})
+const sale1= saleModel.create({
+    "items": [item1,item2]
+})
+console.log(sale1)
+
+*/
