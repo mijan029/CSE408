@@ -26,6 +26,7 @@ const CartProducts = ({product})=>{
 
     return (
         <div className="bg-white rounded shadow my-4 p-3">
+
             <h2 className="text-xl font-semibold mb-2">{product.category}</h2>
 
            
@@ -43,10 +44,19 @@ const CartProducts = ({product})=>{
                       <p className="text-gray-600">Quantity: { product.quantity }</p>
                   </div>
                 </div>
-            <div className="flex justify-between">
-              <button className='mt-2 px-2 border-2 rounded-md border-red-500 text-red-600 hover:bg-red-100 bg-white' onClick = {handleClick}><strong>Remove</strong></button>
-              
+                
+            <div className="flex justify-between mt-3">
+              <div >
 
+                <input 
+                  className="border-2 rounded-md border-black w-40 py-1 pl-6"
+                  type="Number"
+                  placeholder="Sell amount"
+                />
+
+              </div>
+             <button className='px-2 border-2 rounded-md border-red-500 text-red-600 hover:bg-red-100 bg-white' onClick = {handleClick}><strong>Remove</strong></button>
+              
             </div>
 
       </div>
