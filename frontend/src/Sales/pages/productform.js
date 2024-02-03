@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import {useNavigate} from 'react-router-dom'
+import { MyContext } from '../context/MyConext';
 
 const ProductForm = () => {
   const [product, setProduct] = useState({ category: '', name: '', price: '', quantity:'' });
   const [error, setError] = useState(null)
+  const navigate = useNavigate()
+  const {dispatch} = useContext(MyContext)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,11 +32,10 @@ const ProductForm = () => {
         else{
             setError("Successfully added");
             setProduct({ category: '', name: '', price: '',  quantity:''  })
-            //dispatch({type:'CREATE_WORKOUT', payload: json})
-            console.log(json);
+            dispatch({type:'CREATE_PRODUCT', payload: json})
+            //console.log(json);
+            navigate('/admin/product')
         }
-
-
   };
 
   return (

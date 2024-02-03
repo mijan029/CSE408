@@ -1,25 +1,12 @@
 import { useContext } from "react";
 import { MyContext } from "../context/MyConext";
 
-const Products = ({product})=>{
+const CartProducts = ({product})=>{
 
     const {dispatch} = useContext(MyContext)
 
     const handleClick = async ()=>{
-      const response = await fetch('/admin/product/'+product._id,{
-          method: 'DELETE'
-      })
-
-      const json = await response.json();
-      if(response.ok){
-          dispatch({type:'DELETE_PRODUCT', payload:json})
-      }
-    }
-
-    const handleCartClick = async ()=>{
-      if(product.isAdded !== true){
-        product.isAdded = true
-        
+        product.isAdded=false
         const response = await fetch('/admin/product/'+product._id,
                 {
                     method: 'PUT',
@@ -33,12 +20,8 @@ const Products = ({product})=>{
         if(response.ok){
             dispatch({type:'UPDATE_PRODUCT', payload:json})
         }
-        
-      }else{
-        alert("Already added")
-      }
       
-    }
+      }
 
 
     return (
@@ -61,8 +44,8 @@ const Products = ({product})=>{
                   </div>
                 </div>
             <div className="flex justify-between">
-              <button className='mt-2 px-2 border-2 rounded-md border-red-500 text-red-600 hover:bg-red-100 bg-white' onClick = {handleClick}><strong>Delete</strong></button>
-              <button className='mt-2 px-2 border-2 rounded-md border-blue-500 text-white hover:bg-blue-700 bg-blue-500' onClick = {handleCartClick}><strong>{product.isAdded===true?"Added":"Add to Cart"}</strong></button>
+              <button className='mt-2 px-2 border-2 rounded-md border-red-500 text-red-600 hover:bg-red-100 bg-white' onClick = {handleClick}><strong>Remove</strong></button>
+              
 
             </div>
 
@@ -70,4 +53,4 @@ const Products = ({product})=>{
     )
 }
 
-export default Products
+export default CartProducts

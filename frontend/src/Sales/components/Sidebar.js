@@ -3,29 +3,29 @@ import { Link } from 'react-router-dom'; // Assuming you're using React Router
 
 const Sidebar = () => {
   return (
-    <div className="bg-gray-800 col-span-1 p-4 h-auto ">
+    <div className="bg-gray-800 col-span-1 p-4 h-auto">
       <ul className="space-y-4 h-auto ">
-        <li className="border-3">
-          <Link to="admin/product" className="text-white border-1 hover:border-b-white">
+        <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
+          <Link to="admin/product" >
             Products
           </Link>
         </li>
-        <li>
+        <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
           <Link to="/admin/product/add" className="text-white">
             Add a Product
           </Link>
         </li>
-        <li>
+        <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
           <Link to="/order-to-factory" className="text-white">
             Order to Factory
           </Link>
         </li>
-        <li>
+        <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
           <Link to="/receive-products" className="text-white">
             Receive Products
           </Link>
         </li>
-        <li>
+        <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
           <Link to="/history" className="text-white">
             History
           </Link>

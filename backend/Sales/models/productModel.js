@@ -18,7 +18,12 @@ const schema = new Schema(
         quantity:{
             type: Number,
             required: true
+        },
+        isAdded:{
+            type: Boolean,
+            required: false
         }
+
     },
 
     {
