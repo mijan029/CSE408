@@ -1,0 +1,4 @@
+- Search
+- after adding a product the page should redirect to home
+- cart
+

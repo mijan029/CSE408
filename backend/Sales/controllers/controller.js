@@ -7,8 +7,8 @@ const addNewProduct = async (req, res) => {
     try{
         const newProduct = await productModel.create({category, name, price, quantity})
         res.status(200).json(newProduct)
-    }catch{
-        res.status(400).json({error : error.message})
+    }catch(error){
+        res.status(400).json({error : "Please fill all the field with approprite values"})
     }
     console.log("I received")
 };

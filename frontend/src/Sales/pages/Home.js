@@ -26,7 +26,7 @@ const Home = ()=>{
         }
         fetchProducts()
         console.log(products)
-    },[])
+    },[products])
 
      return (
          

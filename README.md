@@ -1,2 +1,2 @@
 # CSE408
-Software Development - Product and Sales Management System
+Software Development - Production and Sales Management System
