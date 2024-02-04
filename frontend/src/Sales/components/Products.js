@@ -42,7 +42,7 @@ const Products = ({product})=>{
 
 
     return (
-        <div className="bg-white rounded shadow my-4 p-3">
+        <div className="bg-white rounded-xl shadow-xl my-4 p-3">
             <h2 className="text-xl font-semibold mb-2">{product.category}</h2>
 
            
@@ -60,9 +60,12 @@ const Products = ({product})=>{
                       <p className="text-gray-600">Quantity: { product.quantity }</p>
                   </div>
                 </div>
-            <div className="flex justify-between">
-              <button className='mt-2 px-2 border-2 rounded-md border-red-500 text-red-600 hover:bg-red-100 bg-white' onClick = {handleClick}><strong>Delete</strong></button>
-              <button className='mt-2 px-2 border-2 rounded-md border-blue-500 text-white hover:bg-blue-700 bg-blue-500' onClick = {handleCartClick}><strong>{product.isAdded===true?"Added":"Add to Cart"}</strong></button>
+            <div className="flex justify-between mt-2">
+              <button className='focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900' onClick = {handleClick}><strong>Delete</strong></button>
+              <button className=' p-2 border-2 rounded-md border-blue-700 text-white hover:bg-blue-800 bg-blue-700' 
+              
+              onClick = {handleCartClick}><strong>{product.isAdded===true?"Added":"Add to Cart"}</strong>
+              </button>
 
             </div>
 

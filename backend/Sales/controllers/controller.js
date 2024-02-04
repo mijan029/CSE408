@@ -87,10 +87,11 @@ const addSale = async (req, res) => {
         myitems[i]= await itemModel.create(items[i])
     }
     */
-    const {customer_name, customer_contact, items} = req.body
-    console.log("hello")
+    const {customerName, customerContact, items} = req.body
+    console.log("helllllllllllo")
+    console.log(items)
     try{
-        const newSale = await saleModel.create({customer_name, customer_contact, items})
+        const newSale = await saleModel.create({customerName, customerContact, items})
         res.status(200).json(newSale)
     }catch(error){
         res.status(400).json({error : error.message})

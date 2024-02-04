@@ -5,6 +5,7 @@ import Cart from './Sales/pages/Cart'
 
 import Navbar from './Sales/components/Navbar'
 import Sidebar from './Sales/components/Sidebar';
+import Table from './Sales/pages/TableCart';
 
 
 

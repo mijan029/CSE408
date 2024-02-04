@@ -22,6 +22,34 @@ const schema = new Schema(
         isAdded:{
             type: Boolean,
             required: false
+        },
+ 
+
+    },
+    {
+        timestamps: true
+    }
+) 
+
+
+
+const mySaleSchema = new Schema(
+    {
+        category:{
+            type: String,
+            required: true
+        },
+        name:{
+            type: String,
+            required: true
+        },
+        price:{
+            type: Number,
+            required: true
+        },
+        saleAmount:{
+            type: Number,
+            required: true
         }
 
     },
@@ -29,6 +57,9 @@ const schema = new Schema(
         timestamps: true
     }
 ) 
+
+
+
 /*
 const saleSchema = new Schema(
     {
@@ -121,16 +152,22 @@ const itemSchema = new Schema(
 //for sale records
 const saleSchema = new Schema(
     {
-        customer_name: {
+        customerName: {
             type: String,
             required: true
         },
-        customer_contact:{
+        customerContact:{
             type: String,
             required: true
         },
         items: {
-            type:[itemSchema],
+            type:[{
+                id: String,
+                category:String,
+                name:String,
+                price:Number,
+                saleAmount:Number
+            }],
             required: true
         }
     },

@@ -67,6 +67,9 @@ router.get('/history/order/:id', singleOrder);
 //post a sale
 router.post('/sale/add', addSale);
 
+//get all sales
+router.get('/sale/add',allSale)
+
 //delete a sale
 router.delete('/sale/:id', deleteSale);
 

@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MyContext } from "../context/MyConext";
 
-const CartProducts = ({product})=>{
+const CartProducts = ({product, cartArray, setCartArray})=>{
 
     const {dispatch} = useContext(MyContext)
+    const [ase, setAse] = useState(false)
 
     const handleClick = async ()=>{
         product.isAdded=false
@@ -23,11 +24,34 @@ const CartProducts = ({product})=>{
       
       }
 
+      const handleChange = (e)=>{
+        const val = {id:product._id, category:product.category, name:product.name, price:product.price, saleAmount:e.target.value}
+        
+        
+        cartArray && setCartArray(cartArray.map(w=>{
+          if(w.id===product._id){
+            setAse(true)
+            return val
+          }else{
+            return w
+          }
+        }))
+          
+
+        if(ase === false){
+          setCartArray([...cartArray, val])
+        }
+        
+        //setNai(true)
+        
+        
+      }
+
 
     return (
-        <div className="bg-white rounded shadow my-4 p-3">
+        <div className="bg-white rounded-xl shadow-lg my-4 p-3">
 
-            <h2 className="text-xl font-semibold mb-2">{product.category}</h2>
+            <h2 className="text-xl font-semibold mb-2 text-blue-500">{product.category}</h2>
 
            
                 <div className="flex">
@@ -44,19 +68,21 @@ const CartProducts = ({product})=>{
                       <p className="text-gray-600">Quantity: { product.quantity }</p>
                   </div>
                 </div>
-                
+
             <div className="flex justify-between mt-3">
               <div >
 
                 <input 
-                  className="border-2 rounded-md border-black w-40 py-1 pl-6"
+                  className="border-2 rounded-md border-black w-20 py-1 pl-6"
                   type="Number"
-                  placeholder="Sell amount"
+                  defaultValue={0}
+                  onChange={handleChange}
                 />
 
               </div>
-             <button className='px-2 border-2 rounded-md border-red-500 text-red-600 hover:bg-red-100 bg-white' onClick = {handleClick}><strong>Remove</strong></button>
-              
+             <button className=' text-white bg-red-700 font-medium rounded-lg text-sm px-4 py-2 hover:bg-red-700 ' 
+             onClick = {handleClick}><strong>Remove</strong></button>
+
             </div>
 
       </div>
