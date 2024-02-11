@@ -9,8 +9,8 @@ const SellHistoryPage = () => {
     const fetchSellRecords = async () => {
       try {
         const response = await fetch('/api/sell-history'); // Replace with your backend API endpoint
-        const data = await response.json();
-       /* const data= [
+        //const data = await response.json();
+        const data= [
             {
                 "_id": "65c239b26313eea513c1777f",
                 "items": [
@@ -31,7 +31,7 @@ const SellHistoryPage = () => {
                 "updatedAt": "2024-02-06T13:52:51.348Z",
                 "__v": 0
             }
-        ]*/
+        ]  
         setSellRecords(data);
       } catch (error) {
         console.error('Error fetching sell records:', error);
