@@ -82,7 +82,7 @@ const SellPage = ()=>{
         fetchProducts()
         
         try {
-            const response = await axios.post(`/admin/products/sell/add/`,{
+            const response = await axios.post(`/admin/products/sale/add/`,{
                 customerName: customerName,
                 customerContact: customerContact,
                 items: sellHistory

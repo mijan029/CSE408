@@ -8,30 +8,30 @@ const SellHistoryPage = () => {
     // Fetch the sell records from the backend API
     const fetchSellRecords = async () => {
       try {
-        const response = await fetch('/api/sell-history'); // Replace with your backend API endpoint
-        //const data = await response.json();
-        const data= [
-            {
-                "_id": "65c239b26313eea513c1777f",
-                "items": [
-                    {
-                        "product_name": "curd",
-                        "product_price": 50,
-                        "product_quantity": 1
-                    },
-                    {
-                        "product_name": "misti",
-                        "product_price": 60,
-                        "product_quantity": 1
-                    }
-                ],
-                "customerName": "zaman",
-                "customerContact": "01756976854",
-                "createdAt": "2024-02-06T13:52:51.348Z",
-                "updatedAt": "2024-02-06T13:52:51.348Z",
-                "__v": 0
-            }
-        ]  
+        const response = await fetch('/admin/products/history/sale'); // Replace with your backend API endpoint
+        const data = await response.json();
+        // const data= [
+        //     {
+        //         "_id": "65c239b26313eea513c1777f",
+        //         "items": [
+        //             {
+        //                 "product_name": "curd",
+        //                 "product_price": 50,
+        //                 "product_quantity": 1
+        //             },
+        //             {
+        //                 "product_name": "misti",
+        //                 "product_price": 60,
+        //                 "product_quantity": 1
+        //             }
+        //         ],
+        //         "customerName": "zaman",
+        //         "customerContact": "01756976854",
+        //         "createdAt": "2024-02-06T13:52:51.348Z",
+        //         "updatedAt": "2024-02-06T13:52:51.348Z",
+        //         "__v": 0
+        //     }
+        //]  
         setSellRecords(data);
       } catch (error) {
         console.error('Error fetching sell records:', error);
