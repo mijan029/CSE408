@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
-const productRouter = require('./Sales/routers/router')
+const productRouter = require('./routers/Sales/router')
 const app = express()
 
 app.get('/', (req,res)=>{
@@ -10,9 +10,13 @@ app.get('/', (req,res)=>{
 
 app.use(express.json())
 
+app.use((req, res, next) => {
+    console.log(req.path, req.method);
+    next();
+  });
 
 //The following router is for Sales Management
-app.use('/admin/product', productRouter)
+app.use('/admin/products', productRouter)
 
 
 mongoose.connect(process.env.MONGO_URI).then(

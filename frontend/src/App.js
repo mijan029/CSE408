@@ -1,12 +1,11 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Home from './Sales/pages/Home'
-import ProductForm from './Sales/pages/productform';
-import Cart from './Sales/pages/Cart'
+import ProducPage from './pages/ProducPage'
+import ProductForm from './pages/productform';
+import Cart from './pages/Cart'
 
-import Navbar from './Sales/components/Navbar'
-import Sidebar from './Sales/components/Sidebar';
-import Table from './Sales/pages/TableCart';
-
+import Navbar from './components/Navbar'
+import Sidebar from './components/Sidebar';
+import Home from './pages/Home'
 
 
 function App() {
@@ -24,18 +23,23 @@ function App() {
                   <Routes>
 
                         <Route 
-                              path = '/admin/product/cart'
+                              path = '/'
+                              element = {<Home />}
+                        />
+
+                        <Route 
+                              path = '/admin/products/cart'
                               element = {<Cart />}
                         />
                       
                         <Route 
-                              path = '/admin/product/add'
+                              path = '/admin/products/add'
                               element = {<ProductForm />}
                         />
 
                         <Route 
-                              path = '/admin/product'
-                              element = {<Home />}
+                              path = '/admin/products'
+                              element = {<ProducPage />}
                         />
 
 

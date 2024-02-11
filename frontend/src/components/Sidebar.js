@@ -6,12 +6,12 @@ const Sidebar = () => {
     <div className="bg-gray-800 col-span-1 p-4 h-auto">
       <ul className="space-y-4 h-auto ">
         <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
-          <Link to="admin/product" >
+          <Link to="admin/products" >
             Products
           </Link>
         </li>
         <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
-          <Link to="/admin/product/add" className="text-white">
+          <Link to="/admin/products/add" className="text-white">
             Add a Product
           </Link>
         </li>

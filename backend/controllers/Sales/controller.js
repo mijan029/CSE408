@@ -1,4 +1,4 @@
-const {productModel, saleModel, receiveModel, orderModel, itemModel} = require('../models/productModel')
+const {productModel, saleModel, receiveModel, orderModel, itemModel, cartModel} = require('../../models/Sales/model')
 const mongoose = require('mongoose')
 
 // Add a new product 
@@ -46,10 +46,12 @@ const singleProduct = async (req,res)=>{
 // delete a product
 const deleteProduct = async (req,res)=>{
     const id = req.params.id;
-
+    
+    console.log("Ashce eikhane?")
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ error: 'Invalid id' });
     }
+
 
 
     const single = await productModel.findByIdAndDelete(id);
@@ -75,6 +77,43 @@ const updateProduct = async (req,res)=>{
     }
     res.status(200).json(single);
 };
+
+
+
+
+// CART
+const addToCart = async (req, res) => {
+    try {
+      const { productId } = req.body;
+      const cart = await cartModel.findOne(); // Assuming there's only one cart in the database
+  
+      // Add the product to the cart's products array
+      const productObjectId = mongoose.Types.ObjectId(productId);
+      
+      cart.products.push(productObjectId);
+      console.log("dekhi")
+      await cart.save();
+  
+      res.status(200).json({ message: 'Product added to cart' });
+    } catch (error) {
+      res.status(400).json({ error: 'Failed to add product to cart' });
+    }
+  };
+
+  const removeFromCart = async (req, res) => {
+    try {
+      const { productId } = req.params;
+      const cart = await cartModel.findOne(); // Assuming there's only one cart in the database
+  
+      // Remove the product from the cart's products array
+      cart.products.pull(productId);
+      await cart.save();
+  
+      res.status(200).json({ message: 'Product removed from cart' });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to remove product from cart' });
+    }
+  };
 
 
 //add a sale record
@@ -280,5 +319,7 @@ module.exports = {
     addOrder,
     singleOrder,
     deleteOrder,
-    allOrder
+    allOrder,
+    addToCart,
+    removeFromCart
 }

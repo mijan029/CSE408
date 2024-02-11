@@ -5,15 +5,15 @@ const Navbar = () => {
   return (
     <nav className=" bg-gray-800 text-white p-5 flex items-center justify-between border-b-2 border-white-700	 ">
       <div className="flex items-center">
-        <h1 className="text-lg font-bold">Production & Sales Management System</h1>
+      <Link to="/" className=' text-white font-bold'>Production & Sales Management System</Link>
       </div>
       <div className="flex items-center space-x-4">
-        <Link to="/admin/product/cart" className="text-gray-100 hover:text-white">
+        <Link to="/admin/products/cart" className="text-gray-100 hover:text-white">
           <div className="w-5 h-5" > Cart </div>
         </Link>
         <div className="flex items-center">
           <div className="w-5 h-5 text-gray-300" >  </div>
-          <span className="ml-2 text-gray-100">John Doe</span>
+          <span className="ml-2 text-gray-100">Profile</span>
         </div>
       </div>
     </nav>

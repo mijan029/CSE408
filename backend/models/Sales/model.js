@@ -19,10 +19,6 @@ const schema = new Schema(
             type: Number,
             required: true
         },
-        isAdded:{
-            type: Boolean,
-            required: false
-        },
  
 
     },
@@ -150,31 +146,17 @@ const itemSchema = new Schema(
 )
 
 //for sale records
-const saleSchema = new Schema(
-    {
-        customerName: {
-            type: String,
-            required: true
-        },
-        customerContact:{
-            type: String,
-            required: true
-        },
-        items: {
-            type:[{
-                id: String,
-                category:String,
-                name:String,
-                price:Number,
-                saleAmount:Number
-            }],
-            required: true
-        }
-    },
-    {
-        timestamps: true
-    }
-)
+const saleSchema = new mongoose.Schema({
+    customer_name: {type: String, required: true },
+    customer_contact_info: {type: String, required: true },
+    products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'productModel' }],
+    totalAmount: { type: Number, required: true },
+    soldAt: { type: Date, default: Date.now }
+});
+
+const cartSchema = new mongoose.Schema({
+    products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'productModel' }],
+});
 
 //for receive records
 const receiveSchema = new Schema(
@@ -208,8 +190,9 @@ itemModel= mongoose.model('itemModel', itemSchema)
 saleModel = mongoose.model('saleModel', saleSchema)
 receiveModel = mongoose.model('receiveModel', receiveSchema)
 orderModel = mongoose.model('orderModel', orderSchema)
+cartModel = mongoose.model('cartSchema', cartSchema)
 
-module.exports = { productModel, saleModel, receiveModel, orderModel,itemModel }
+module.exports = { productModel, saleModel, receiveModel, orderModel,itemModel,cartModel }
 /*
 const product1= this.productModel.create({
     "category": "juice",

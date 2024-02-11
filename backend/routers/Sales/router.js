@@ -18,8 +18,10 @@ const {
     addOrder,
     singleOrder,
     deleteOrder,
-    allOrder
-} = require ('../controllers/controller');
+    allOrder,
+    addToCart,
+    removeFromCart
+} = require ('../../controllers/Sales/controller');
 
 
 //get all products
@@ -37,6 +39,13 @@ router.delete('/:id',deleteProduct);
 //update a single product
 router.put('/:id',updateProduct);
 
+
+
+
+// add to cart
+router.post('/cart/add', addToCart)
+//delete from cart
+router.delete('/cart/:id', removeFromCart)
 
 
 

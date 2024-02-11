@@ -1,12 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom'
-import { MyContext } from '../context/MyConext';
 
 const ProductForm = () => {
   const [product, setProduct] = useState({ category: '', name: '', price: '', quantity:'' });
   const [error, setError] = useState(null)
   const navigate = useNavigate()
-  const {dispatch} = useContext(MyContext)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,7 +13,7 @@ const ProductForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('/admin/product/add',
+    const response = await fetch('/admin/products/add',
             {
                 method: 'POST',
                 body: JSON.stringify(product),
@@ -32,9 +30,7 @@ const ProductForm = () => {
         else{
             setError("Successfully added");
             setProduct({ category: '', name: '', price: '',  quantity:''  })
-            dispatch({type:'CREATE_PRODUCT', payload: json})
-            //console.log(json);
-            navigate('/admin/product')
+            navigate('/admin/products')
         }
   };
 
