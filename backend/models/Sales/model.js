@@ -147,12 +147,27 @@ const itemSchema = new Schema(
 
 //for sale records
 const saleSchema = new mongoose.Schema({
-    customer_name: {type: String, required: true },
-    customer_contact_info: {type: String, required: true },
-    products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'productModel' }],
-    totalAmount: { type: Number, required: true },
-    soldAt: { type: Date, default: Date.now }
-});
+    customerName: {type: String, required: true },
+    customerContact: {type: String, required: true },
+    items: [{ 
+        name:{
+            type:String,
+            required:true
+    },
+    price:{
+        type:String,
+        required:true
+    },
+    quantity:{
+        type:Number,
+        required:true
+    }
+
+     }
+    ],
+   // totalAmount: { type: Number, required: true },
+    //soldAt: { type: Date, default: Date.now }
+}, {timestamps:true});
 
 const cartSchema = new mongoose.Schema({
     products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'productModel' }],
