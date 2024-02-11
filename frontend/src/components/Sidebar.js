@@ -30,6 +30,31 @@ const Sidebar = () => {
             History
           </Link>
         </li>
+
+        <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
+          <Link to="/employees" className="text-white">
+          Employees
+          </Link>
+        </li>
+
+        <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
+          <Link to="/accounts" className="text-white">
+          Accounts
+          </Link>
+        </li>
+
+        <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
+          <Link to="/employeesAttendance" className="text-white">
+          Attendance
+          </Link>
+        </li>
+
+        <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
+          <Link to="/employeesPerformance" className="text-white">
+          Performance
+          </Link>
+        </li>
+
         
       </ul>
     </div>

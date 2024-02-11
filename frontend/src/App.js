@@ -6,6 +6,18 @@ import Cart from './pages/Cart'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home'
+import SellHistoryPage from './pages/SellHistory';
+//Employees
+import EmployeePage from "./pages/EmployeePage";
+import AddEmployee from "./components/AddEmployee";
+import UpdateEmployeeForm from "./components/UpdateEmployee";
+import EmployeeAccount from "./pages/EmployeeAccountPage";
+import EmployeeAttendancePage from "./pages/EmployeeAttendancePage";
+import SubmitAttendanceForm from "./components/SubmitAttendanceForm";
+import ViewAttendanceRecords from "./components/ViewAttendanceRecords";
+import SearchAttendanceRecords from "./components/SearchAttendanceRecords";
+
+import EmployeePerformancePage from "./pages/EmployeePerformancePage";
 
 
 function App() {
@@ -41,6 +53,30 @@ function App() {
                               path = '/admin/products'
                               element = {<ProducPage />}
                         />
+                        <Route 
+                              path = '/admin/sell-history'
+                              element = {<SellHistoryPage />}
+                        />
+                        <Route path="/employees" element={<EmployeePage />} />
+                <Route
+                  path="/employees/:id/update"
+                  element={<UpdateEmployeeForm />}
+                />
+                <Route path="/employees/add" element={<AddEmployee />} />
+                <Route path="/accounts" element={<EmployeeAccount />} />
+                <Route
+                  path="/employeesAttendance"
+                  element={<EmployeeAttendancePage />}
+                />
+                <Route
+                  path="/employeesAttendance/add"
+                  element={<SubmitAttendanceForm />}
+                />
+                <Route
+                  path="/employeesAttendance/search"
+                  element={<ViewAttendanceRecords />}
+                />
+                        
 
 
                   </Routes>
