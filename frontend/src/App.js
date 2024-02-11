@@ -76,6 +76,10 @@ function App() {
                   path="/employeesAttendance/search"
                   element={<ViewAttendanceRecords />}
                 />
+                <Route
+                  path="/employeesPerformance"
+                  element={<EmployeePerformancePage />}
+                />
                         
 
 
