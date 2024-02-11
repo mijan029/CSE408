@@ -15,6 +15,14 @@ const Sidebar = () => {
             Add a Product
           </Link>
         </li>
+
+        <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
+          <Link to="/admin/products/sell" className="text-white">
+            Sell
+          </Link>
+        </li>
+
+
         <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
           <Link to="/order-to-factory" className="text-white">
             Order to Factory

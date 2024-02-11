@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import ProducPage from './pages/ProducPage'
 import ProductForm from './pages/productform';
 import Cart from './pages/Cart'
+import SellPage from './pages/SellPage';
 
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar';
@@ -30,6 +31,11 @@ function App() {
                         <Route 
                               path = '/admin/products/cart'
                               element = {<Cart />}
+                        />
+
+                        <Route 
+                              path = '/admin/products/sell'
+                              element = {<SellPage />}
                         />
                       
                         <Route 
