@@ -128,6 +128,7 @@ const addSale = async (req, res) => {
     */
     const {customerName, customerContact, items} = req.body
     console.log("helllllllllllo")
+    console.log(customerName)
     console.log(items)
     try{
         const newSale = await saleModel.create({customerName, customerContact, items})

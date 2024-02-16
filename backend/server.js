@@ -24,7 +24,7 @@ app.use((req, res, next) => {
   });
 
 //The following router is for Sales Management
-app.use('/admin/products', productRouter)
+app.use('/admin/products',  productRouter)
 
 //Employee routes
 app.use("/employees", employeeRoutes);

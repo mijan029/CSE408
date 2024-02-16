@@ -31,7 +31,7 @@ const SellHistoryPage = () => {
         //         "updatedAt": "2024-02-06T13:52:51.348Z",
         //         "__v": 0
         //     }
-        //]  
+        // ]  
         setSellRecords(data);
       } catch (error) {
         console.error('Error fetching sell records:', error);
@@ -42,13 +42,13 @@ const SellHistoryPage = () => {
   }, []);
 
   const calculateTotalPrice = (items) => {
-    return items.reduce((total, item) => total + item.product_quantity * item.product_price, 0);
+    return items.reduce((total, item) => total + item.quantity * item.price, 0);
   };
 
   const filteredSellRecords = sellRecords.filter(
-    (sellRecord) =>
-      sellRecord.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      sellRecord.items.some((item) => item.product_name.toLowerCase().includes(searchTerm.toLowerCase()))
+    (sellRecord) => true
+      // sellRecord.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      // sellRecord.items.some((item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
   return (
@@ -89,11 +89,11 @@ const SellHistoryPage = () => {
             <tbody>
               {sellRecord.items.map((item, itemIndex) => (
                 <tr key={itemIndex}>
-                  <td className="px-6 py-4 border-b border-gray-200">{item.product_name}</td>
-                  <td className="px-6 py-4 border-b border-gray-200">{item.product_quantity}</td>
-                  <td className="px-6 py-4 border-b border-gray-200">{item.product_price}</td>
+                  <td className="px-6 py-4 border-b border-gray-200">{item.name}</td>
+                  <td className="px-6 py-4 border-b border-gray-200">{item.quantity}</td>
+                  <td className="px-6 py-4 border-b border-gray-200">{item.price}</td>
                   <td className="px-6 py-4 border-b border-gray-200">
-                    {item.product_quantity * item.product_price}
+                    {item.quantity * item.price}
                   </td>
                 </tr>
               ))}

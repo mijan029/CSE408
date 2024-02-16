@@ -8,7 +8,8 @@ const SellPage = ()=>{
      const [customerName, setCustomerName] = useState("")
      const [customerContact, setCustomerContact] = useState("")
 
-     const [sellHistory, setSellHistory] = useState([])
+     //const [sellHistory, setSellHistory] = useState([])
+     const sellHistory=[]
     
      const [products, setProducts] = useState([])
      const [Cart, setCart] = useState([])
@@ -59,6 +60,10 @@ const SellPage = ()=>{
         }
       };
 
+      const createSale = (val)=>{
+        setSellHistory([...sellHistory,  val])
+      }
+
     const handleSell = async () =>{
         Cart.map(item=>{
             //console.log(quantities[index])
@@ -67,12 +72,16 @@ const SellPage = ()=>{
             //     handleUpdateProduct(product)
             // }
             //console.log(item.quantity)
-            setSellHistory([...sellHistory, {
+            const val  = {
                 name: item.product.name,
+                price: item.product.price,
                 quantity: item.quantity,
-                price: item.product.price
 
-            } ])
+            }
+            console.log(val) 
+            //setSellHistory([...sellHistory,  val])
+            createSale(val)
+            console.log(sellHistory)
             if(item.product.quantity>=item.quantity){
                 item.product.quantity-=item.quantity
                 handleUpdateProduct(item.product)
@@ -80,6 +89,8 @@ const SellPage = ()=>{
         })
 
         fetchProducts()
+
+        console.log(sellHistory)
         
         try {
             const response = await axios.post(`/admin/products/sale/add/`,{
