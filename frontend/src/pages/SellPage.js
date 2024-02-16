@@ -9,7 +9,7 @@ const SellPage = ()=>{
      const [customerContact, setCustomerContact] = useState("")
 
      //const [sellHistory, setSellHistory] = useState([])
-     const sellHistory=[]
+     var sellHistory=[]
     
      const [products, setProducts] = useState([])
      const [Cart, setCart] = useState([])
@@ -61,7 +61,7 @@ const SellPage = ()=>{
       };
 
       const createSale = (val)=>{
-        setSellHistory([...sellHistory,  val])
+        sellHistory = [...sellHistory,  val]
       }
 
     const handleSell = async () =>{
