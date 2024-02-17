@@ -63,6 +63,12 @@ const Sidebar = () => {
           </Link>
         </li>
 
+        <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
+          <Link to="/raw" className="text-white">
+          Raw Materials
+          </Link>
+        </li>
+
         
       </ul>
     </div>

@@ -19,6 +19,7 @@ import ViewAttendanceRecords from "./components/ViewAttendanceRecords";
 import SearchAttendanceRecords from "./components/SearchAttendanceRecords";
 
 import EmployeePerformancePage from "./pages/EmployeePerformancePage";
+import RawPage from './pages/RawPage';
 
 
 function App() {
@@ -86,6 +87,11 @@ function App() {
                   path="/employeesPerformance"
                   element={<EmployeePerformancePage />}
                 />
+
+
+
+                {/* These route for raw side */}
+                <Route path = "/raw" element = {<RawPage/>} />
                         
 
 

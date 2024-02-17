@@ -40,9 +40,9 @@ app.use("/employeesAttendance", employeeAttendanceRoutes);
 app.use("/employeesPerformance", employeePerformanceRoutes);
 
 //production routes
-app.use("/raws",rawRouter);
-app.use("/raws/purchaseHistory",historyPurchaseRawRouter);
-app.use("/raws/requestOrderHistory",historyReqOrderRouter);
+app.use("/raw",rawRouter);
+app.use("/raw/purchaseHistory",historyPurchaseRawRouter);
+app.use("/raw/requestOrderHistory",historyReqOrderRouter);
 
 
 mongoose.connect(process.env.MONGO_URI).then(
