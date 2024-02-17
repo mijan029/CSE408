@@ -59,13 +59,13 @@ const Product = ({product, setProducts})=>{
 
            
                 <div className="flex">
-                  <div className=" border-black border-2">
+                  {/* <div className=" border-black border-2">
                     <img
                       src="product-image.jpg"
                       alt="Product_image"
                       className="w-16 h-16 rounded mr-4"
                     />
-                  </div>
+                  </div> */}
                   <div className="ml-2">
                       <h3 className="text-lg font-semibold">{product.name}</h3>
                       <p className="text-gray-600">Price: { product.price }</p>
@@ -74,9 +74,9 @@ const Product = ({product, setProducts})=>{
                 </div>
             <div className="flex justify-between mt-2">
               <button className='bg-red-500 text-white border rounded px-4' onClick = {handleDelete}><strong>Delete</strong></button>
-              <button className={`${addCart===true?"bg-red-600 hover:bg-red-800":"bg-blue-600 hover:bg-blue-800"} p-2 border-2 rounded-md  text-white`} onClick = {handleCartClick}>
+              {/* <button className={`${addCart===true?"bg-red-600 hover:bg-red-800":"bg-blue-600 hover:bg-blue-800"} p-2 border-2 rounded-md  text-white`} onClick = {handleCartClick}>
                 {addCart===true?"Remove From Cart":"Add to Cart"}
-              </button>
+              </button> */}
 
             </div>
 

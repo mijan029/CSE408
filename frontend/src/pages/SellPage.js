@@ -8,7 +8,8 @@ const SellPage = ()=>{
      const [customerName, setCustomerName] = useState("")
      const [customerContact, setCustomerContact] = useState("")
 
-     const [sellHistory, setSellHistory] = useState([])
+     //const [sellHistory, setSellHistory] = useState([])
+     const sellHistory = []
     
      const [products, setProducts] = useState([])
      const [Cart, setCart] = useState([])
@@ -33,6 +34,22 @@ const SellPage = ()=>{
         // );
 
         setCart([...Cart,{product,quantity}])
+      };
+
+      const handleRemoveCart = (product, quantity) => {
+        console.log(quantities)
+        // setQuantities((prevQuantities) =>
+        //   prevQuantities.map((quantity, index) =>
+        //     products[index].id === productId ? newQuantity : quantity
+        //   )
+        // );
+
+        const newCart = Cart.filter(e=>(
+            e.product._id !== product._id
+        ))
+        setCart(newCart)
+
+        //setCart([...Cart,{product,quantity}])
       };
 
       
@@ -67,12 +84,12 @@ const SellPage = ()=>{
             //     handleUpdateProduct(product)
             // }
             //console.log(item.quantity)
-            setSellHistory([...sellHistory, {
+            sellHistory.push( {
                 name: item.product.name,
                 quantity: item.quantity,
                 price: item.product.price
 
-            } ])
+            } )
             if(item.product.quantity>=item.quantity){
                 item.product.quantity-=item.quantity
                 handleUpdateProduct(item.product)
@@ -80,6 +97,8 @@ const SellPage = ()=>{
         })
 
         fetchProducts()
+
+        console.log(sellHistory)
         
         try {
             const response = await axios.post(`/admin/products/sale/add/`,{
@@ -148,7 +167,7 @@ const SellPage = ()=>{
                                 {
                                     products && products.map((product,index) => (
                                         
-                                        <SellProduct product={product} handleQuantityChange={handleQuantityChange} />
+                                        <SellProduct product={product} handleQuantityChange={handleQuantityChange} handleRemoveCart = {handleRemoveCart} />
                                            
                                         )
                                     )

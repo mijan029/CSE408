@@ -23,7 +23,7 @@ const Sidebar = () => {
         </li>
 
 
-        <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
+        {/* <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
           <Link to="/order-to-factory" className="text-white">
             Order to Factory
           </Link>
@@ -32,7 +32,7 @@ const Sidebar = () => {
           <Link to="/receive-products" className="text-white">
             Receive Products
           </Link>
-        </li>
+        </li> */}
         <li className="p-2 text-white hover:border-b-2 hover:border-green-200">
           <Link to="admin/sell-history" className="text-white">
             Sell History

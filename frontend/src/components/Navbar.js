@@ -7,7 +7,7 @@ const Navbar = () => {
       <div className="flex items-center">
       <Link to="/" className=' text-white font-bold'>Production & Sales Management System</Link>
       </div>
-      <div className="flex items-center space-x-4">
+      {/* <div className="flex items-center space-x-4">
         <Link to="/admin/products/cart" className="text-gray-100 hover:text-white">
           <div className="w-5 h-5" > Cart </div>
         </Link>
@@ -15,7 +15,7 @@ const Navbar = () => {
           <div className="w-5 h-5 text-gray-300" >  </div>
           <span className="ml-2 text-gray-100">Profile</span>
         </div>
-      </div>
+      </div> */}
     </nav>
   );
 }

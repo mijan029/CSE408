@@ -42,7 +42,7 @@ const SellHistoryPage = () => {
   }, []);
 
   const calculateTotalPrice = (items) => {
-    return items.reduce((total, item) => total + item.product_quantity * item.product_price, 0);
+    return items.reduce((total, item) => total + item.quantity * item.price, 0);
   };
 
   const filteredSellRecords = sellRecords.filter(
@@ -89,11 +89,11 @@ const SellHistoryPage = () => {
             <tbody>
               {sellRecord.items.map((item, itemIndex) => (
                 <tr key={itemIndex}>
-                  <td className="px-6 py-4 border-b border-gray-200">{item.product_name}</td>
-                  <td className="px-6 py-4 border-b border-gray-200">{item.product_quantity}</td>
-                  <td className="px-6 py-4 border-b border-gray-200">{item.product_price}</td>
+                  <td className="px-6 py-4 border-b border-gray-200">{item.name}</td>
+                  <td className="px-6 py-4 border-b border-gray-200">{item.quantity}</td>
+                  <td className="px-6 py-4 border-b border-gray-200">{item.price}</td>
                   <td className="px-6 py-4 border-b border-gray-200">
-                    {item.product_quantity * item.product_price}
+                    {item.quantity * item.price}
                   </td>
                 </tr>
               ))}
