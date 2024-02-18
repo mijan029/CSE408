@@ -1,10 +1,20 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const RawPurchaseTable = ({raws, onSetStatus, fetchRaws}) => {
-  const [items, setItems] = useState(raws.map(raw => ({ ...raw, id: raw._id, amount: 1, total: raw.price })));
-  const [grandTotal, setGrandTotal] = useState(raws.reduce((sum,raw)=>sum+raw.price,0))
+const RawPurchaseTable = ({purchaseList, onSetStatus, fetchRaws}) => {
 
+    console.log(purchaseList)
+
+  const [items, setItems] = useState([]);
+  const [grandTotal, setGrandTotal] = useState(0)
+
+  
+  useEffect(()=>{
+      setItems(purchaseList.map(raw => ({ ...raw, id: raw._id, amount: 1, total: raw.price })))
+      setGrandTotal(purchaseList.reduce((sum,raw)=>sum+raw.price,0))
+    },[purchaseList])
+    
+console.log(items)
   const handleAmountChange = (id, amount) => {
     const newItems = items.map(item => {
       if (item.id === id) {
@@ -19,20 +29,20 @@ const RawPurchaseTable = ({raws, onSetStatus, fetchRaws}) => {
 
   const handleClick =()=>{
     items.map(async (item,index)=>{
-        await axios.put(`/factory/raw/${item.id}`, {name:item.name, price:item.price, inStock:item.amount+raws[index].inStock})
+        await axios.put(`/factory/raw/${item.id}`, {name:item.name, price:item.price, inStock:item.amount+purchaseList[index].inStock})
         .then( (response) => {
                
         })
         .catch((error) => {
             console.error('Error adding product:', error);
         });
-    })
-    fetchRaws()
+    });
+    fetchRaws();
     onSetStatus("Add")
   }
 
   return (
-    <div className="overflow-x-auto mt-14 bg-white rounded shadow-md">
+    <div className="overflow-x-auto mt-14 bg-white rounded">
       <table className="min-w-full table-auto">
         <thead className="border-b">
           <tr>
@@ -76,7 +86,12 @@ const RawPurchaseTable = ({raws, onSetStatus, fetchRaws}) => {
                 <button
                 type="submit"
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mx-5"
-                onClick={()=>{onSetStatus("Add")}}>
+                onClick={()=>{onSetStatus("Add");
+                    items.map(async (item,index)=>{
+                        await axios.put(`/factory/raw/${item.id}`, purchaseList[index])
+                    });
+                    fetchRaws();
+                    }}>
                 Cancel </button>
 
 

@@ -25,15 +25,15 @@ import RawPage from './pages/RawPage';
 function App() {
   
   return (
-    <div className='App'>
+    <div className='App h-dvh' style={{backgroundColor:'rgb(236,244,244)'}}>
       <BrowserRouter>
         <div className='navbar'>
             <Navbar />
         </div>
-        <div className='grid grid-cols-7 h-dvh'>
+        <div className='grid grid-cols-6 h-auto'>
             <Sidebar />
 
-              <div className='col-span-6  py-4' style={{backgroundColor:'rgb(244,244,244)'}}> 
+              <div className='col-span-5 ml-5 py-4' > 
                   <Routes>
 
                         <Route 

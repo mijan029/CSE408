@@ -1,8 +1,14 @@
+import { useState,useEffect } from "react";
 
 const RawProduct = ({raw, onDelete, onUpdate, onPurchase})=>{
+    const [intoPurchase, setIntoPurchase] = useState(false)
+
+    useEffect(()=>{
+      setIntoPurchase(false)
+    },[raw])
 
     return (
-        <div className="bg-white  rounded-lg shadow-lg my-4 p-3">
+        <div className="bg-white  rounded-lg my-4 p-3">
            
                 <div className="flex">
                   <div className="ml-2">
@@ -17,9 +23,9 @@ const RawProduct = ({raw, onDelete, onUpdate, onPurchase})=>{
                       <button onClick={() => {onUpdate(raw);} }
                         className="mr-2 px-4 py-2 bg-green-500 text-white rounded"
                       >  Update </button>
-                      <button  onClick={() => onPurchase(raw)}
-                        className="ml-2 px-4 py-2 bg-blue-500 text-white rounded"
-                      >  Purchase  </button>
+                      <button  onClick={() => {onPurchase(raw); setIntoPurchase(!intoPurchase)}}
+                        className={`ml-2 px-4 py-2 bg-blue-500 text-white rounded ${intoPurchase && "shadow-lg bg-pink-500"}`}
+                      >  {intoPurchase ? "OnBoard":"Purchase"}  </button>
 
                       <button  onClick={() => onDelete(raw)}
                         className="px-4 py-2 bg-red-500 text-white rounded"

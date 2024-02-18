@@ -7,7 +7,8 @@ const UpdateRaw = ({raw, onSetStatus, fetchRaws}) => {
   const [inStock,setInStock] = useState("")
 
   useEffect(()=>{
-    axios.get(`factory/raw/${raw._id}`)
+    console.log("eikhane ashce?")
+    axios.get(`/factory/raw/${raw._id}`)
     .then(response=>{
         setName(response.data.name)
         setPrice(response.data.price)
@@ -15,7 +16,7 @@ const UpdateRaw = ({raw, onSetStatus, fetchRaws}) => {
     }).catch(error=>{
         console.log(error)
     })
-  },[])
+  },[raw])
 
   
 
@@ -34,7 +35,7 @@ const UpdateRaw = ({raw, onSetStatus, fetchRaws}) => {
 
   return (
     <div className="flex items-center justify-center mt-14">
-      <form  onSubmit={handleUpdateForm} className="max-w-md bg-white rounded-lg shadow-md p-8">
+      <form  onSubmit={handleUpdateForm} className="max-w-md bg-white rounded-lg p-8">
         <h2 className="text-2xl font-bold mb-6 pl-5">Update</h2>
         <input
           type="text"

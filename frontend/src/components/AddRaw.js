@@ -29,7 +29,7 @@ const AddRaw = ({onSetRaws}) => {
 
   return (
     <div className="flex items-center justify-center mt-14">
-      <form  onSubmit={handleSubmit} className="max-w-md bg-white rounded-lg shadow-md p-8">
+      <form  onSubmit={handleSubmit} className="max-w-md bg-white rounded-lg p-8">
         <h2 className="text-2xl font-bold mb-6 pl-5">Add a new Raw</h2>
         <input
           type="text"

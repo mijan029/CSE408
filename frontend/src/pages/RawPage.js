@@ -10,6 +10,7 @@ const RawPage = ()=>{
     const [raws, setRaws] = useState([])
     const [status, setStatus] = useState("Add") 
     const [keyWord, setKeyWord] = useState('')
+    const [purchaseList, setPurchaseList] = useState([])
     const [updateRaw, setUpdateRaw] = useState(null)
     // status can be None, Update, Purchase, Add
 
@@ -38,16 +39,20 @@ const RawPage = ()=>{
         ).catch(error=>{
             console.log(error)
         })
+
+        setStatus("Add")
     }
 
     const onSetStatus = (stat)=>{
         setStatus(stat)
+        setPurchaseList([])
     }
 
 
     const onUpdate = (raw) =>{
         setStatus("Update")
         setUpdateRaw(raw)
+        console.log(raw)
 
     }
     // const handleUpdate = () =>{
@@ -59,6 +64,15 @@ const RawPage = ()=>{
 
     const onPurchase = (raw)=>{
         setStatus("Purchase")
+        var ase = false
+        var filteredList = purchaseList.filter(e=>{
+            if(e._id===raw._id ) {console.log(ase); ase=true; return false}
+            else return true;
+        })
+
+        ase===false?setPurchaseList([...filteredList,raw]):setPurchaseList(filteredList)
+
+        console.log(purchaseList)
     }
 
 
@@ -82,7 +96,7 @@ const RawPage = ()=>{
                 {
                     (status.match("Add") && (<AddRaw onSetRaws={onSetRaws} />)) ||
                     (status.match("Update") && (<UpdateRaw raw={updateRaw} onSetStatus={onSetStatus} fetchRaws={fetchRaws}/>))||
-                    (status.match("Purchase") && <RawPurchaseTable raws={raws} onSetStatus={onSetStatus} fetchRaws={fetchRaws}/>) 
+                    (status.match("Purchase") && <RawPurchaseTable purchaseList={purchaseList} onSetStatus={onSetStatus} fetchRaws={fetchRaws}/>) 
                 }
                 
             </div>
