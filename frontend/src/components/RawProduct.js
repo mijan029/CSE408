@@ -1,60 +1,8 @@
-import { useState } from "react"
-import axios from 'axios'
 
 const RawProduct = ({raw, onDelete, onUpdate, onPurchase})=>{
-  const [addCart, setAddCart] = useState(false)
-
-
-//   const fetchProducts = async () => {
-//     try {
-//       const response = await axios.get('/admin/products');
-//       setProducts(response.data);
-//     } catch (error) {
-//       console.error('Error fetching products:', error);
-//     }
-//   };
-
-    // const handleDelete = async ()=>{
-    //   try {
-    //     await axios.delete(`/admin/products/${product._id}`);
-    //     fetchProducts();
-    //   } catch (error) {
-    //     console.error('Error deleting product:', error);
-    //   }
-    // }
-
-    // const addToCart = async (productId) => {
-    //   try {
-    //     await axios.post('/admin/products/cart/add', { productId });
-    //     console.log('Product added to cart');
-    //   } catch (error) {
-    //     console.error('Failed to add product to cart:', error);
-    //   }
-    // };
-
-    // const removeFromCart = async (productId) => {
-    //   try {
-    //     await axios.delete(`/admin/products/cart/${productId}`);
-    //     console.log('Product removed from cart');
-    //   } catch (error) {
-    //     console.error('Failed to remove product from cart:', error);
-    //   }
-    // };
-
-    // const handleCartClick = async ()=>{
-    //   if(addCart===true){
-    //     removeFromCart(product._id)
-    //   }else {
-    //     addToCart(product._id)
-    //   }
-    //   setAddCart(!addCart)
-
-      
-    // }
-
 
     return (
-        <div className="bg-white rounded-xl shadow-xl my-4 p-3">
+        <div className="bg-white  rounded-lg shadow-lg my-4 p-3">
            
                 <div className="flex">
                   <div className="ml-2">
@@ -66,7 +14,16 @@ const RawProduct = ({raw, onDelete, onUpdate, onPurchase})=>{
 
                 <div className="flex justify-between mt-2">
                     
-                    <button className=""></button>
+                      <button onClick={() => {onUpdate(raw);} }
+                        className="mr-2 px-4 py-2 bg-green-500 text-white rounded"
+                      >  Update </button>
+                      <button  onClick={() => onPurchase(raw)}
+                        className="ml-2 px-4 py-2 bg-blue-500 text-white rounded"
+                      >  Purchase  </button>
+
+                      <button  onClick={() => onDelete(raw)}
+                        className="px-4 py-2 bg-red-500 text-white rounded"
+                      >  Delete </button>            
 
                 </div>
 

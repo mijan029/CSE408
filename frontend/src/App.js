@@ -30,10 +30,10 @@ function App() {
         <div className='navbar'>
             <Navbar />
         </div>
-        <div className='grid grid-cols-5 h-dvh'>
+        <div className='grid grid-cols-7 h-dvh'>
             <Sidebar />
 
-              <div className='col-span-4 bg-gray-100 py-4'> 
+              <div className='col-span-6  py-4' style={{backgroundColor:'rgb(244,244,244)'}}> 
                   <Routes>
 
                         <Route 
