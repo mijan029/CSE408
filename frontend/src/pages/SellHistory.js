@@ -31,7 +31,7 @@ const SellHistoryPage = () => {
         //         "updatedAt": "2024-02-06T13:52:51.348Z",
         //         "__v": 0
         //     }
-        //]  
+        // ]  
         setSellRecords(data);
       } catch (error) {
         console.error('Error fetching sell records:', error);
@@ -46,9 +46,9 @@ const SellHistoryPage = () => {
   };
 
   const filteredSellRecords = sellRecords.filter(
-    (sellRecord) =>
-      sellRecord.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      sellRecord.items.some((item) => item.product_name.toLowerCase().includes(searchTerm.toLowerCase()))
+    (sellRecord) => true
+      // sellRecord.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      // sellRecord.items.some((item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
   return (

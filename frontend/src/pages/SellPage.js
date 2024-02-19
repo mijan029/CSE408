@@ -9,7 +9,7 @@ const SellPage = ()=>{
      const [customerContact, setCustomerContact] = useState("")
 
      //const [sellHistory, setSellHistory] = useState([])
-     const sellHistory = []
+     var sellHistory=[]
     
      const [products, setProducts] = useState([])
      const [Cart, setCart] = useState([])
@@ -76,6 +76,10 @@ const SellPage = ()=>{
         }
       };
 
+      const createSale = (val)=>{
+        sellHistory = [...sellHistory,  val]
+      }
+
     const handleSell = async () =>{
         Cart.map(item=>{
             //console.log(quantities[index])
@@ -84,12 +88,13 @@ const SellPage = ()=>{
             //     handleUpdateProduct(product)
             // }
             //console.log(item.quantity)
-            sellHistory.push( {
+            const val  = {
                 name: item.product.name,
+                price: item.product.price,
                 quantity: item.quantity,
                 price: item.product.price
 
-            } )
+            } 
             if(item.product.quantity>=item.quantity){
                 item.product.quantity-=item.quantity
                 handleUpdateProduct(item.product)
@@ -97,6 +102,8 @@ const SellPage = ()=>{
         })
 
         fetchProducts()
+
+        console.log(sellHistory)
 
         console.log(sellHistory)
         

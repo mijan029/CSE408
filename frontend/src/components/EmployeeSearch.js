@@ -23,7 +23,7 @@ const EmployeeSearch = ({setSearchTerm, setSelectedOption}) => {
         <input
           type="text"
           onChange={e => setSearchTerm(e.target.value)}
-          className="border border-gray-400 p-2 rounded-l"
+          className="border  border-gray-400 p-2 rounded-l"
         />
         
         
