@@ -10,7 +10,7 @@ const RawPurchaseTable = ({purchaseList, onSetStatus, fetchRaws}) => {
 
   
   useEffect(()=>{
-      setItems(purchaseList.map(raw => ({ ...raw, id: raw._id, amount: 1, total: raw.price })))
+      setItems(purchaseList.map(raw => ({ ...raw, id: raw._id, purchaseAmount: 1, total: raw.price })))
       setGrandTotal(purchaseList.reduce((sum,raw)=>sum+raw.price,0))
     },[purchaseList])
     
@@ -20,16 +20,16 @@ console.log(items)
       if (item.id === id) {
         const updatedAmount = Number(amount);
         setGrandTotal(grandTotal-item.total+updatedAmount*item.price)
-        return { ...item, amount: updatedAmount, total: updatedAmount * item.price };
+        return { ...item, purchaseAmount: updatedAmount, total: updatedAmount * item.price };
       }
       return item;
     });
     setItems(newItems);
   };
 
-  const handleClick =()=>{
+  const handleClick = async ()=>{
     items.map(async (item,index)=>{
-        await axios.put(`/factory/raw/${item.id}`, {name:item.name, price:item.price, inStock:item.amount+purchaseList[index].inStock})
+        await axios.put(`/factory/raw/${item.id}`, {name:item.name, price:item.price, inStock:item.purchaseAmount+purchaseList[index].inStock})
         .then( (response) => {
                
         })
@@ -37,6 +37,14 @@ console.log(items)
             console.error('Error adding product:', error);
         });
     });
+
+    await axios.post('/factory/raw/purchaseHistory',{purchaseList:items, grandTotal:grandTotal})
+    .then(response=>{
+
+    }).catch(error=>{
+      console.log(error)
+    })
+
     fetchRaws();
     onSetStatus("Add")
   }
@@ -56,16 +64,16 @@ console.log(items)
           {items.map((item) => (
                 <tr key={item.id} className="border-b">
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{item.name}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.price}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.price}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     <input 
                     type="number" 
                     className="mt-1 block w-1/2 px-3 py-2 border-2 border-black rounded-lg" 
-                    value={item.amount} 
+                    value={item.purchaseAmount} 
                     onChange={(e) => handleAmountChange(item.id, e.target.value)}
                     />
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.total}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.total}</td>
                 </tr>
           ))}
         </tbody>

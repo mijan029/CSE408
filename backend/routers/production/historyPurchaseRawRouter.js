@@ -8,6 +8,8 @@ const {
     deletePurchaseHistory
 } = require('../../controllers/production/historyPurchaseRawController');
 
+console.log("here????")
+
 router.post('/', createPurchaseHistory);
 router.get('/', getAllPurchaseHistories);
 router.get('/:id', getPurchaseHistoryById);

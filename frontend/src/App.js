@@ -20,6 +20,7 @@ import SearchAttendanceRecords from "./components/SearchAttendanceRecords";
 
 import EmployeePerformancePage from "./pages/EmployeePerformancePage";
 import RawPage from './pages/RawPage';
+import RawPurchaseHistory from './components/RawPurchaseHistory';
 
 
 function App() {
@@ -91,7 +92,8 @@ function App() {
 
 
                 {/* These route for raw side */}
-                <Route path = "/raw" element = {<RawPage/>} />
+                <Route path = "/factory/raw" element = {<RawPage/>} />
+                <Route path = "/factory/raw/purchaseHistory" element = {<RawPurchaseHistory/>} />
                         
 
 

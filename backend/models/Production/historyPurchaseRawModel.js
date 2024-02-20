@@ -6,8 +6,12 @@ const historyPurchaseRawSchema = mongoose.Schema(
             type: Date,
             default: Date.now
         },
-        rawMaterials: [
+        purchaseList: [
             {
+                id: {
+                    type: String,
+                    required: true
+                },
                 name:{
                     type: String,
                     required: true
@@ -16,12 +20,21 @@ const historyPurchaseRawSchema = mongoose.Schema(
                     type: Number,
                     required: true
                 },
-                amountAdded:{
+                purchaseAmount:{
                     type: Number,
                     required: true
                 },
+                total:{
+                    type: Number,
+                    required: true
+                }
             },
-        ]
+        ],
+
+        grandTotal: {
+            type: Number,
+            required: true
+        }
 
     },
     {
