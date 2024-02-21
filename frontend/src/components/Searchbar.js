@@ -11,7 +11,7 @@ const SearchBar = ({setKeyWord}) =>{
             type="text"
             placeholder="Search..."
             onChange={handleChange}
-            className=" rounded-md py-2 px-4 w-1/3  focus:ring-green-500"
+            className=" rounded-md py-2 px-4 w-1/3   focus:ring-green-500"
           />
          
         </div>
