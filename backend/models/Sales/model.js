@@ -147,23 +147,23 @@ const itemSchema = new Schema(
 
 //for sale records
 const saleSchema = new mongoose.Schema({
+    user_id: {type: String, required:true},
     customerName: {type: String, required: true },
     customerContact: {type: String, required: true },
     items: [{ 
-        name:{
+            name:{
+                type:String,
+                required:true
+        },
+        price:{
             type:String,
             required:true
-    },
-    price:{
-        type:String,
-        required:true
-    },
-    quantity:{
-        type:Number,
-        required:true
+        },
+        quantity:{
+            type:Number,
+            required:true
+        }
     }
-
-     }
     ],
    // totalAmount: { type: Number, required: true },
     //soldAt: { type: Date, default: Date.now }

@@ -14,6 +14,7 @@ const employeePerformanceRoutes = require("./routers/employee/employeePerformanc
 const rawRouter = require('./routers/production/rawRouter')
 const historyPurchaseRawRouter = require('./routers/production/historyPurchaseRawRouter')
 const historyReqOrderRouter = require('./routers/production/historyReqOrderRouter')
+const userRoutes = require('./routers/userRoutes')
 
 
 const app = express()
@@ -42,9 +43,10 @@ app.use("/employeesAttendance", employeeAttendanceRoutes);
 app.use("/employeesPerformance", employeePerformanceRoutes);
 
 //production routes
-app.use("/raws",rawRouter);
-app.use("/raws/purchaseHistory",historyPurchaseRawRouter);
-app.use("/raws/requestOrderHistory",historyReqOrderRouter);
+app.use("/factory/raw",rawRouter);
+app.use("/factory/raw/purchaseHistory",historyPurchaseRawRouter);
+app.use("/factory/raw/requestOrderHistory",historyReqOrderRouter);
+app.use("/user", userRoutes);
 
 
 mongoose.connect(process.env.MONGO_URI).then(

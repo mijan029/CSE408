@@ -9,7 +9,7 @@ const SearchBar = ({setKeyWord}) =>{
         <div className="mb-4">
           <input
             type="text"
-            placeholder="Search for products"
+            placeholder="Search..."
             onChange={handleChange}
             className=" rounded-md py-2 px-4 w-1/3  focus:ring-green-500"
           />

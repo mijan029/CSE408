@@ -6,11 +6,11 @@ const router = express.Router();
 
 // Signup Route
 router.post('/signup', async (req, res) => {
-  const { name, username, position, email, phone, address, salary, hireDate, password } = req.body;
+  const { email, password, branch_id, post } = req.body;
   try {
-    const user = new User({ name, username, position, email, phone, address, salary, hireDate, password });
+    const user = new User({ email, password, branch_id, post });
     await user.save();
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '2d' });
     res.status(201).send({ token });
   } catch (error) {
     res.status(400).send(error);
@@ -25,7 +25,7 @@ router.post('/login', async (req, res) => {
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).send({ error: 'Login failed! Check authentication credentials' });
     }
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '2d' });
     res.send({ token });
   } catch (error) {
     res.status(400).send(error);

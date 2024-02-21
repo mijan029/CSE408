@@ -14,6 +14,8 @@ const getAllRaws = async (req, res) => {
     try {
         const raws = await rawModel.find();
         res.json(raws);
+        console.log("hello")
+        console.log(raws)
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
