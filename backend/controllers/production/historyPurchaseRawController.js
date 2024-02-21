@@ -1,24 +1,28 @@
 const historyPurchaseRawModel = require('../../models/Production/historyPurchaseRawModel'); 
 
 const createPurchaseHistory = async (req, res) => {
+    console.log("eikhane ????")
     try {
         const newHistory = await historyPurchaseRawModel.create(req.body);
         res.status(200).json(newHistory);
+        console.log(newHistory)
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
 
 const getAllPurchaseHistories = async (req, res) => {
+    console.log("eikhane ????")
     try {
         const histories = await historyPurchaseRawModel.find();
-        res.json(histories);
+        res.status(200).json(histories);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
 
 const getPurchaseHistoryById = async (req, res) => {
+    console.log("eikhane id ????")
     try {
         const history = await historyPurchaseRawModel.findById(req.params.id);
         if (!history) {
