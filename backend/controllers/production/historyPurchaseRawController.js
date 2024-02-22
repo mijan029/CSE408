@@ -12,9 +12,22 @@ const createPurchaseHistory = async (req, res) => {
 };
 
 const getAllPurchaseHistories = async (req, res) => {
+    const { startDate, endDate } = req.query;
+
+    let query = {};
+
+    if (startDate && endDate) {
+        query = {
+        purchaseDate: {
+            $gte: new Date(startDate),
+            $lte: new Date(endDate),
+        },
+        };
+    }
+    console.log(query);
     console.log("eikhane ????")
     try {
-        const histories = await historyPurchaseRawModel.find();
+        const histories = await historyPurchaseRawModel.find(query);
         res.status(200).json(histories);
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -47,8 +60,30 @@ const updatePurchaseHistory = async (req, res) => {
 };
 
 const deletePurchaseHistory = async (req, res) => {
+    console.log("eikhane delete ????")
+    const { startDate, endDate } = req.query;
+
+
     try {
-        const deletedHistory = await historyPurchaseRawModel.findByIdAndDelete(req.params.id);
+        let query = {};
+        if(startDate && endDate) {
+            query = {
+            purchaseDate: {
+                $gte: new Date(startDate), 
+                $lte: new Date(endDate), 
+            },
+            };
+
+        }else{
+            query = {
+                _id: req.params.id
+            }
+        }
+
+        console.log(query);
+        
+        //const result = await HistoryRecord.deleteMany(query);
+        const deletedHistory = await historyPurchaseRawModel.deleteMany(query);
         if (!deletedHistory) {
             return res.status(400).json({ message: 'Purchase history not found' });
         }

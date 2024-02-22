@@ -16,7 +16,7 @@ const RawPage = ()=>{
     // status can be None, Update, Purchase, Add
     const { user }= useAuth()
     //const token= user.token
-    console.log(user)
+    //console.log(user)
 
     const fetchRaws = async () => {
         axios.get('/factory/raw',{

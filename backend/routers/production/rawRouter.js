@@ -4,7 +4,7 @@ const { createRaw, getAllRaws, getRawById, updateRaw, deleteRaw
          } = require('../../controllers/production/rawController'); 
 const requireAuth = require('../../middleware/requireAuth')
 
-router.use(requireAuth);
+//router.use(requireAuth);
 
 router.post('/', createRaw);
 router.get('/', getAllRaws);

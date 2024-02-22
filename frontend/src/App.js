@@ -30,7 +30,7 @@ import Login from './pages/Login';
 function App() {
   
   return (
-    <div className='App h-dvh' style={{backgroundColor:'rgb(236,244,244)'}}>
+    <div className='h-full' style={{backgroundColor:'rgb(236,244,244)'}}>
       <BrowserRouter>
       <AuthProvider>
         <div className='navbar'>

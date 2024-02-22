@@ -40,7 +40,7 @@ console.log(items)
 
     await axios.post('/factory/raw/purchaseHistory',{purchaseList:items, grandTotal:grandTotal})
     .then(response=>{
-
+      console.log(response.data)
     }).catch(error=>{
       console.log(error)
     })

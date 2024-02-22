@@ -15,5 +15,6 @@ router.get('/', getAllPurchaseHistories);
 router.get('/:id', getPurchaseHistoryById);
 router.put('/:id', updatePurchaseHistory);
 router.delete('/:id', deletePurchaseHistory);
+router.delete('/', deletePurchaseHistory);
 
 module.exports = router;
