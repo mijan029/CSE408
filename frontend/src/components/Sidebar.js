@@ -10,7 +10,7 @@ const Sidebar = () => {
             Products
           </Link>
         </li>
-        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
+        <li className="p-2 font-medium  hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/admin/products/add" className="">
             Add a Product
           </Link>
