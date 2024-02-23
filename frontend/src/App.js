@@ -25,6 +25,10 @@ import RawPurchaseHistory from './components/RawPurchaseHistory';
 
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import RawPageProduction from './pages/RawPageProduction';
+import RequestProduction from './pages/RequestProduction';
+import RequestRaw from './pages/RequestRaw';
+import RawUseHistory from './pages/RawUseHistory';
 
 
 function App() {
@@ -99,9 +103,15 @@ function App() {
                 {/* These route for raw side */}
                 <Route path = "/factory/raw" element = {<RawPage/>} />
                 <Route path = "/factory/raw/purchaseHistory" element = {<RawPurchaseHistory/>} />
+                <Route path = "/factory/raw/requestHistory" element = {<RawUseHistory/>} />
+                <Route path = "/factory/raw/requests" element = {<RequestRaw/>} />
 
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />   
+
+                {/* These routes for production sites */}
+                <Route path = "/factory/production/raws" element = {<RawPageProduction/>} />
+                <Route path = "/factory/production/requests" element = {<RequestProduction/>} />
 
 
                   </Routes>

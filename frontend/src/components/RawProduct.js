@@ -29,6 +29,7 @@ const RawProduct = ({raw, onDelete, onUpdate, onPurchase})=>{
                       <button onClick={() => {onUpdate(raw);} }
                         className="mr-2 px-4 py-2 bg-green-500 text-white rounded"
                       >  Update </button>
+                      
                       <button  onClick={() => {onPurchase(raw); setIntoPurchase(!intoPurchase)}}
                         className={`ml-2 px-4 py-2 bg-blue-500 text-white rounded ${intoPurchase && "shadow-lg bg-pink-500"}`}
                       >  {intoPurchase ? "OnBoard":"Purchase"}  </button>

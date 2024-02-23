@@ -12,11 +12,15 @@ const historyReqOrderSchema = mongoose.Schema(
         },
         status: {
             type: String,
-            enum: ['Requested', 'Sent', 'Approved', 'Successful', 'Canceled'],
+            enum: ['Requested', 'Approved', 'Successful', 'Cancelled', 'Rejected'],
             required: true
         },
         rawMaterials: [
             {
+                id: {
+                    type: String,
+                    required: true,    
+                },
                 name:{
                     type: String,
                     required: true
@@ -25,12 +29,20 @@ const historyReqOrderSchema = mongoose.Schema(
                     type: Number,
                     required: true
                 },
-                amountAdded:{
+                requestAmount:{
                     type: Number,
                     required: true
                 },
+                total:{
+                    type: Number,
+                    required: true
+                }
             },
-        ]
+        ],
+        grandTotal: {
+            type: Number,
+            required: true
+        },
 
     },
     {

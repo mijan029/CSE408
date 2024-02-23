@@ -70,10 +70,37 @@ const Sidebar = () => {
         </li>
 
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
+          <Link to="/factory/raw/requests" className="">
+          Requests
+          </Link>
+        </li>
+
+        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
+          <Link to="/factory/raw/requestHistory" className="">
+          Use History
+          </Link>
+        </li>
+
+        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/factory/raw/purchaseHistory" className="">
           purchaseHistory
           </Link>
         </li>
+
+        
+        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
+          <Link to="/factory/production/raws" className="">
+          Raw Materials Production
+          </Link>
+        </li>
+
+        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
+          <Link to="/factory/production/requests" className="">
+          Requests Production
+          </Link>
+        </li>
+
+        
 
         
       </ul>
