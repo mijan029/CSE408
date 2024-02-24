@@ -5,7 +5,7 @@ import axios from "axios"
 import UpdateRaw from "../components/UpdateRaw"
 import SearchBar from "../components/Searchbar"
 import RawPurchaseTable from "../components/RawPurchaseTable"
-import { useAuth } from "../hooks/AuthContext"
+import { useAuth } from "../context/AuthContext"
 
 const RawPage = ()=>{
     const [raws, setRaws] = useState([])

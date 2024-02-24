@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import SearchBar from "../components/Searchbar"
-import { useAuth } from "../hooks/AuthContext"
+import { useAuth } from "../context/AuthContext"
 import RawPurchaseTableProduction from "../components/RawPurchaseTableProduction"
 
 const RawPageProduction = ()=>{

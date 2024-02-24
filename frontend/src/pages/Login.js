@@ -1,24 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../hooks/AuthContext';
+//import { useAuth } from '../context/AuthContext';
+import  { useAuthContext } from '../hooks/useAuthContext';
+import { useLogin} from '../hooks/useLogin';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { login } = useAuth();
+  //const { login } = useAuth();
+  const { login, error, isLoading }= useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const { data } = await axios.post('/user/login', { email, password });
-      login(data);
-      console.log(data)
-      navigate('/'); // Redirect to home page or dashboard on successful login
-    } catch (error) {
-      console.error(error);
-    }
+    await login(email, password);
+    navigate('/');
   };
 
   return (
@@ -40,10 +37,12 @@ const Login = () => {
         />
         <button
           type="submit"
+          disabled={isLoading}
           className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Log In
         </button>
+        {error && <p className="text-red-500">{error}</p>}
       </form>
     </div>
   );

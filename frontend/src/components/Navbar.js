@@ -1,14 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../hooks/AuthContext';
+import { useAuth } from '../context/AuthContext';
+import { useLogout } from '../hooks/useLogout';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const Navbar = () => {
+  const { logout } = useLogout();
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
+  //console.log("Navbar user: ", user);
 
-  const { currentUser, logout } = useAuth();
+
+  //const { currentUser, logout } = useAuth();
 
   const handleLogout = () => {
     logout();
+    navigate('/login');
     // Additional actions upon logout, e.g., redirecting to homepage
   };
   return (
@@ -25,17 +34,24 @@ const Navbar = () => {
       </div> */}
 
       <div>
-        {currentUser ? (
+        {user ? (
+          <div>
+          <span className="mr-2">Welcome, {user.email}</span>
           <button
             onClick={handleLogout}
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
           >
             Logout
           </button>
+          
+          </div>
         ) : (
           <>
             <Link to="/login" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">Login</Link>
+            {/* {user && user.post === "admin" &&
             <Link to="/signup" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Signup</Link>
+          } */}
+            
           </>
         )}
       </div>

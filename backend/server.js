@@ -46,7 +46,7 @@ app.use("/employeesPerformance", employeePerformanceRoutes);
 app.use("/factory/raw/purchaseHistory",historyPurchaseRawRouter);
 app.use("/factory/raw/requestOrderHistory",historyReqOrderRouter);
 app.use("/factory/raw",rawRouter);
-//app.use("/user", userRoutes);
+app.use("/user", userRoutes);
 
 
 mongoose.connect(process.env.MONGO_URI).then(

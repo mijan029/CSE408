@@ -1,5 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import { AuthProvider } from './hooks/AuthContext';
+import { AuthContextProvider } from './context/AuthContext';
 import ProducPage from './pages/ProducPage'
 import ProductForm from './pages/productform';
 import Cart from './pages/Cart'
@@ -36,7 +36,7 @@ function App() {
   return (
     <div className='h-full' style={{backgroundColor:'rgb(236,244,244)'}}>
       <BrowserRouter>
-      <AuthProvider>
+      <AuthContextProvider>
         <div className='navbar'>
             <Navbar />
         </div>
@@ -118,7 +118,7 @@ function App() {
               </div>
 
         </div>
-        </AuthProvider>
+        </AuthContextProvider>
       </BrowserRouter>
     </div>
   );
