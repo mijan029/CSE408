@@ -79,7 +79,7 @@ const Sidebar = () => {
           </Link>
         </li> */}
 
-        {user && user.user.post === "rawmanager" &&
+        {user && user.user.post === "rawmanager"  &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/factory/raw" className="">
           Raw Materials
@@ -107,7 +107,7 @@ const Sidebar = () => {
           </Link>
         </li>
         }
-        {user && user.user.post === "rawmanager" &&
+        {user && user.user.post === "productionmanager" &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/factory/production/raws" className="">
           Raw Materials Production
