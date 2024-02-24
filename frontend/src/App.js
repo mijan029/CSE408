@@ -43,7 +43,7 @@ function App() {
         <div className='grid grid-cols-6 h-auto'>
             <Sidebar />
 
-              <div className='col-span-5 ml-5 py-4' > 
+              <div className='col-span-5 h-auto ml-5 py-4' > 
                   <Routes>
 
                         <Route 

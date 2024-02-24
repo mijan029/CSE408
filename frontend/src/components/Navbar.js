@@ -36,7 +36,7 @@ const Navbar = () => {
       <div>
         {user ? (
           <div>
-          <span className="mr-2">Welcome, {user.email}</span>
+          <span className="mr-2">Welcome <span className='font-bold'>{user.email}</span></span>
           <button
             onClick={handleLogout}
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"

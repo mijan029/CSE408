@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Assuming you're using React Router
+import { Link } from 'react-router-dom'; 
 import { useAuthContext } from '../hooks/useAuthContext';
 
 
@@ -93,7 +93,7 @@ const Sidebar = () => {
           </Link>
         </li>
         }
-        {user && user.user.post === "productionmanager" &&
+        {user && (user.user.post === "productionmanager"||user.user.post === "rawmanager") &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/factory/raw/requestHistory" className="">
           Use History
@@ -110,14 +110,14 @@ const Sidebar = () => {
         {user && user.user.post === "productionmanager" &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/factory/production/raws" className="">
-          Raw Materials Production
+          Raw Materials
           </Link>
         </li>
         }
         {user && user.user.post === "productionmanager" &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/factory/production/requests" className="">
-          Requests Production
+          Requests
           </Link>
         </li>
         }

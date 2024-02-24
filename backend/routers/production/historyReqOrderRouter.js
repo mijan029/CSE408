@@ -13,5 +13,6 @@ router.get('/', getAllRequestOrders);
 router.get('/:id', getRequestOrderById);
 router.put('/:id', updateRequestOrder);
 router.delete('/:id', deleteRequestOrder);
+router.delete('/', deleteRequestOrder);
 
 module.exports = router;
