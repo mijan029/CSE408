@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useSignup } from '../hooks/useSignup';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -8,20 +9,12 @@ const Signup = () => {
   const [branchId, setBranchId] = useState('');
   const [post, setPost] = useState('');
   const navigate = useNavigate();
+  const { signup, error, isLoading } = useSignup();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post('/user/signup', {
-        email,
-        password,
-        branch_id: branchId,
-        post,
-      });
-      navigate('/login'); // Redirect to login page on successful signup
-    } catch (error) {
-      console.error(error);
-    }
+    await signup(email, password, branchId, post);
+    navigate('/');
   };
 
   return (
@@ -57,10 +50,12 @@ const Signup = () => {
         />
         <button
           type="submit"
+          disabled={isLoading}
           className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          Sign Up
+          Create
         </button>
+        {error && <div className="text-red-500">{error}</div>}
       </form>
     </div>
   );
