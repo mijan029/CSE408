@@ -31,7 +31,7 @@ router.get('/', allProducts);
 router.get('/:id',singleProduct);
 
 //post a product
-router.post('/add',addNewProduct);
+router.post('/',addNewProduct);
 
 //delete a single product
 router.delete('/:id',deleteProduct);

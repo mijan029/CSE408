@@ -10,6 +10,7 @@ const employeeAccountRoutes = require("./routers/employee/employeeAccountRoutes"
 const employeeAttendanceRoutes = require("./routers/employee/employeeAttendanceRoutes");
 const employeePerformanceRoutes = require("./routers/employee/employeePerformanceRoutes");
 
+const historyProduceProductRouter = require('./routers/production/historyProduceProductRouter')
 
 const rawRouter = require('./routers/production/rawRouter')
 const historyPurchaseRawRouter = require('./routers/production/historyPurchaseRawRouter')
@@ -32,7 +33,6 @@ app.use((req, res, next) => {
   });
 
 //The following router is for Sales Management
-app.use('/admin/products',  productRouter)
 
 //Employee routes
 app.use("/employees", employeeRoutes);
@@ -43,9 +43,14 @@ app.use("/employeesAttendance", employeeAttendanceRoutes);
 app.use("/employeesPerformance", employeePerformanceRoutes);
 
 //production routes
+app.use("/factory/product/produceHistory",historyProduceProductRouter);
+app.use('/factory/product', productRouter)
+
 app.use("/factory/raw/requestOrderHistory",historyReqOrderRouter);
 app.use("/factory/raw/purchaseHistory",historyPurchaseRawRouter);
 app.use("/factory/raw",rawRouter);
+
+//user routes
 app.use("/user", userRoutes);
 
 

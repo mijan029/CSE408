@@ -2,7 +2,7 @@
 
 const Home  = ()=> {
     return (
-        <div className="text-bold text-center font-xl">
+        <div className="font-bold text-center font-xl">
             Home
         </div>
     )

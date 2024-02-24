@@ -14,18 +14,12 @@ const Sidebar = () => {
       <ul className="space-y-4 h-auto ">
         { user && (user.user.post === "productionmanager"|| user.post === "salesmanager") &&
         <li className="p-2 font-medium  hover:font-bold hover:bg-gray-100 rounded-lg">
-          <Link to="admin/products" >
+          <Link to="factory/product" >
             Products
           </Link>
         </li>
         }
-        {user && user.user.post === "productionmanager" &&
-        <li className="p-2 font-medium  hover:font-bold hover:bg-gray-100 rounded-lg">
-          <Link to="/admin/products/add" className="">
-            Add a Product
-          </Link>
-        </li>
-        }
+        
         {user && user.user.post === "cashier" &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/admin/products/sell" className="">
@@ -93,24 +87,11 @@ const Sidebar = () => {
           </Link>
         </li>
         }
-        {user && (user.user.post === "productionmanager"||user.user.post === "rawmanager") &&
-        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
-          <Link to="/factory/raw/requestHistory" className="">
-          Use History
-          </Link>
-        </li>
-        }
-        {user && user.user.post === "rawmanager" &&
-        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
-          <Link to="/factory/raw/purchaseHistory" className="">
-          purchaseHistory
-          </Link>
-        </li>
-        }
+
         {user && user.user.post === "productionmanager" &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/factory/production/raws" className="">
-          Raw Materials
+          Request Raws
           </Link>
         </li>
         }
@@ -121,6 +102,32 @@ const Sidebar = () => {
           </Link>
         </li>
         }
+
+        {user && user.user.post === "productionmanager" &&
+        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
+          <Link to="/factory/production/produceHistory" className="">
+          Produce History
+          </Link>
+        </li>
+        }
+        
+        {user && user.user.post === "rawmanager" &&
+        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
+          <Link to="/factory/raw/purchaseHistory" className="">
+          Purchase History
+          </Link>
+        </li>
+        }
+      
+
+        {user && (user.user.post === "productionmanager"||user.user.post === "rawmanager") &&
+        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
+          <Link to="/factory/raw/requestHistory" className="">
+          {user.user.post === "productionmanager"? "Receive History":"Sent History"}
+          </Link>
+        </li>
+        }
+
         {user && user.user.post === "admin" &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/signup" className="">

@@ -18,6 +18,18 @@ const RequestRaw = ()=>{
         })
     }
 
+    const handleApprove = async (item)=>{
+        item.rawMaterials.forEach(async (raw)=>{
+            const rawItem = await axios.get(`/factory/raw/${raw.id}`)
+            const updateRaw = {...rawItem.data, inStock:rawItem.data.inStock-raw.requestAmount}
+            await axios.put(`/factory/raw/${raw.id}`,updateRaw)
+        })
+
+        const updateItem = {...item, status:"Approved" , approveDate: new Date()}
+        await axios.put(`/factory/raw/requestOrderHistory/${item._id}`,updateItem)
+        fetchRequests()
+    }
+
     return (
         <div className="grid grid-cols-3">
 
@@ -82,11 +94,7 @@ const RequestRaw = ()=>{
                                                         <button
                                                             type="submit"
                                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                                            onClick={ async ()=>{
-                                                                const updateItem = {...item, status:"Approved" , approveDate: new Date()}
-                                                                await axios.put(`/factory/raw/requestOrderHistory/${item._id}`,updateItem)
-                                                                fetchRequests()
-                                                                                } }
+                                                            onClick={ () => handleApprove(item) }
                                                         >
                                                         Approve </button>
                                                         

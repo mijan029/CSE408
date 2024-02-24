@@ -1,7 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import { AuthContextProvider } from './context/AuthContext';
-import ProducPage from './pages/ProducPage'
-import ProductForm from './pages/productform';
+import ProducPage from './pages/ProductPage'
 import Cart from './pages/Cart'
 import SellPage from './pages/SellPage';
 
@@ -29,6 +28,7 @@ import RawPageProduction from './pages/RawPageProduction';
 import RequestProduction from './pages/RequestProduction';
 import RequestRaw from './pages/RequestRaw';
 import RawUseHistory from './pages/RawUseHistory';
+import ProduceHistory from './components/ProduceHistory';
 
 
 function App() {
@@ -44,77 +44,63 @@ function App() {
             <Sidebar />
 
               <div className='col-span-5 h-auto ml-5 py-4' > 
-                  <Routes>
+                <Routes>
 
-                        <Route 
-                              path = '/'
-                              element = {<Home />}
-                        />
+                  <Route path = '/' element = {<Home />}/>
 
-                        <Route 
-                              path = '/admin/products/cart'
-                              element = {<Cart />}
-                        />
+                  <Route path = '/admin/products/cart' element = {<Cart />}/>
 
-                        <Route 
-                              path = '/admin/products/sell'
-                              element = {<SellPage />}
-                        />
-                      
-                        <Route 
-                              path = '/admin/products/add'
-                              element = {<ProductForm />}
-                        />
+                  <Route path = '/admin/products/sell' element = {<SellPage />} />
 
-                        <Route 
-                              path = '/admin/products'
-                              element = {<ProducPage />}
-                        />
-                        <Route 
-                              path = '/admin/sell-history'
-                              element = {<SellHistoryPage />}
-                        />
-                        <Route path="/employees" element={<EmployeePage />} />
-                <Route
-                  path="/employees/:id/update"
-                  element={<UpdateEmployeeForm />}
-                />
-                <Route path="/employees/add" element={<AddEmployee />} />
-                <Route path="/accounts" element={<EmployeeAccount />} />
-                <Route
-                  path="/employeesAttendance"
-                  element={<EmployeeAttendancePage />}
-                />
-                <Route
-                  path="/employeesAttendance/add"
-                  element={<SubmitAttendanceForm />}
-                />
-                <Route
-                  path="/employeesAttendance/search"
-                  element={<ViewAttendanceRecords />}
-                />
-                <Route
-                  path="/employeesPerformance"
-                  element={<EmployeePerformancePage />}
-                />
+                  <Route path = '/factory/product' element = {<ProducPage />}/>
+
+                  <Route 
+                        path = '/admin/sell-history'
+                        element = {<SellHistoryPage />}
+                  />
+                  <Route path="/employees" element={<EmployeePage />} />
+
+                  <Route
+                    path="/employees/:id/update"
+                    element={<UpdateEmployeeForm />}
+                  />
+                  <Route path="/employees/add" element={<AddEmployee />} />
+                  <Route path="/accounts" element={<EmployeeAccount />} />
+                  <Route
+                    path="/employeesAttendance"
+                    element={<EmployeeAttendancePage />}
+                  />
+                  <Route
+                    path="/employeesAttendance/add"
+                    element={<SubmitAttendanceForm />}
+                  />
+                  <Route
+                    path="/employeesAttendance/search"
+                    element={<ViewAttendanceRecords />}
+                  />
+                  <Route
+                    path="/employeesPerformance"
+                    element={<EmployeePerformancePage />}
+                  />
 
 
 
-                {/* These route for raw side */}
-                <Route path = "/factory/raw" element = {<RawPage/>} />
-                <Route path = "/factory/raw/purchaseHistory" element = {<RawPurchaseHistory/>} />
-                <Route path = "/factory/raw/requestHistory" element = {<RawUseHistory/>} />
-                <Route path = "/factory/raw/requests" element = {<RequestRaw/>} />
+                  {/* These route for raw side */}
+                  <Route path = "/factory/raw" element = {<RawPage/>} />
+                  <Route path = "/factory/raw/purchaseHistory" element = {<RawPurchaseHistory/>} />
+                  <Route path = "/factory/raw/requestHistory" element = {<RawUseHistory/>} />
+                  <Route path = "/factory/raw/requests" element = {<RequestRaw/>} />
 
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />   
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/login" element={<Login />} />   
 
-                {/* These routes for production sites */}
-                <Route path = "/factory/production/raws" element = {<RawPageProduction/>} />
-                <Route path = "/factory/production/requests" element = {<RequestProduction/>} />
+                  {/* These routes for production sites */}
+                  <Route path = "/factory/production/produceHistory" element = {<ProduceHistory/>} />
+                  <Route path = "/factory/production/raws" element = {<RawPageProduction/>} />
+                  <Route path = "/factory/production/requests" element = {<RequestProduction/>} />
 
 
-                  </Routes>
+                </Routes>
               </div>
 
         </div>

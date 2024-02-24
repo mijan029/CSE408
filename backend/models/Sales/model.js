@@ -15,7 +15,7 @@ const schema = new Schema(
             type: Number,
             required: true
         },
-        quantity:{
+        inStock:{
             type: Number,
             required: true
         },
@@ -154,15 +154,15 @@ const saleSchema = new mongoose.Schema({
             name:{
                 type:String,
                 required:true
-        },
-        price:{
-            type:String,
-            required:true
-        },
-        quantity:{
-            type:Number,
-            required:true
-        }
+            },
+            price:{
+                type:String,
+                required:true
+            },
+            quantity:{
+                type:Number,
+                required:true
+            }
     }
     ],
    // totalAmount: { type: Number, required: true },
