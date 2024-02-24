@@ -12,6 +12,7 @@ const SearchByDate = ({ setHistory, api }) => {
       .then((response) => {
         setHistory(response.data);
         console.log(response.data)
+        console.log(api)
       })
       .catch((error) => {
         console.error('Error fetching history records:', error);

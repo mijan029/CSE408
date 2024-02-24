@@ -43,8 +43,8 @@ app.use("/employeesAttendance", employeeAttendanceRoutes);
 app.use("/employeesPerformance", employeePerformanceRoutes);
 
 //production routes
-app.use("/factory/raw/purchaseHistory",historyPurchaseRawRouter);
 app.use("/factory/raw/requestOrderHistory",historyReqOrderRouter);
+app.use("/factory/raw/purchaseHistory",historyPurchaseRawRouter);
 app.use("/factory/raw",rawRouter);
 //app.use("/user", userRoutes);
 

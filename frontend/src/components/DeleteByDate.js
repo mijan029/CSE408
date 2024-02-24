@@ -5,7 +5,7 @@ const DeleteByDate = ({ fetchHistory, api }) => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
-  const handleSearch = () => {
+  const handleDelete = () => {
     axios.delete(api, {
         params: {startDate,endDate}
     })
@@ -36,7 +36,7 @@ const DeleteByDate = ({ fetchHistory, api }) => {
       /></div>
       <button
         className="bg-red-500 hover:bg-red-600 text-white rounded px-4 py-2 mt-5 ml-1"
-        onClick={handleSearch}
+        onClick={handleDelete}
       >
         Delete
       </button>
