@@ -4,8 +4,10 @@ import { useEffect, useState } from "react"
 import SearchBar from "../components/Searchbar"
 import SearchByDate from "../components/SearchByDate"
 import DeleteByDate from "../components/DeleteByDate"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 const ProductSentHistory = ()=>{
+    const {user} = useAuthContext()
     const [history, setHistory] = useState([])
     const [keyWord, setKeyWord] = useState('')
     useEffect(()=>{
@@ -30,8 +32,9 @@ const ProductSentHistory = ()=>{
                         {
                         history.map( item=>(
     
-                                    (item.Materials.filter(e=> (e.name.match(keyWord)) )).length ?  (<div className=" rounded-lg my-5 p-5 bg-white">
-                                        <p className="text-gray-500">Id: {item._id}</p>
+                                    ((item.Materials.filter(e=> (e.name.match(keyWord)) )).length && (user.user.post==="productionmanager"||user.user.branch_id === item.branch_id ) ) ?  (<div className=" rounded-lg my-5 p-5 bg-white">
+                                       <p className="text-gray-500 my-2"><span className="font-bold text-black mr-2">Id:</span>{item._id}</p>
+                                       {(user.user.post==="productionmanager") &&  <p className="text-gray-500 my-2"><span className="font-bold text-black mr-2">Showroom Id:</span>{item.branch_id}</p>}
                                         <p className="text-gray-500 my-2"><span className="font-bold text-black mr-2">Request Date:</span> {new Date(item.orderDate).toLocaleString('en-US',{
                                                             day: 'numeric',
                                                             month: 'short',

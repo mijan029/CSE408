@@ -89,8 +89,8 @@ function App() {
 
                   {/* Showroom Routes */}
 
-                  <Route path = "/factory/showroom/Order" element = {<OrderShowroom />}/>
-                  <Route path = "factory/showroom/order-to-factory" element = {<ProductPageShowroom />} />
+                  <Route path = "/showroom/Order" element = {<OrderShowroom />}/>
+                  <Route path = "/showroom/order-to-factory" element = {<ProductPageShowroom />} />
 
 
 
