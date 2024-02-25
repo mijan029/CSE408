@@ -33,6 +33,7 @@ import ProductPageShowroom from './pages/ProductPageShowroom';
 import OrderShowroom from './pages/OrderShowroom';
 import OrderProduction from './pages/OrderProduction';
 import ProductSentHistory from './pages/ProductSentHistory';
+import ReceiveShowroom from './pages/ReceiveShowroom';
 
 
 function App() {
@@ -90,6 +91,8 @@ function App() {
                   {/* Showroom Routes */}
 
                   <Route path = "/showroom/Order" element = {<OrderShowroom />}/>
+                  <Route path = "/showroom/received" element = {<ReceiveShowroom />}/>
+
                   <Route path = "/showroom/order-to-factory" element = {<ProductPageShowroom />} />
 
 

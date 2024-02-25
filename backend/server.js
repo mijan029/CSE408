@@ -12,6 +12,7 @@ const employeePerformanceRoutes = require("./routers/employee/employeePerformanc
 
 const historyProduceProductRouter = require('./routers/production/historyProduceProductRouter')
 const historyOrderFactoryRouter = require('./routers/production/historyOrderFactoryRouter')
+const historyOrderFactoryRouter1 = require('./routers/production/historyOrderFactoryRouter')
 const factoryProductRouter = require('./routers/production/factoryProductRouter')
 
 const rawRouter = require('./routers/production/rawRouter')
@@ -47,6 +48,7 @@ app.use("/employeesPerformance", employeePerformanceRoutes);
 //production routes
 app.use("/factory/product/produceHistory",historyProduceProductRouter);
 app.use("/factory/product/orderHistory",historyOrderFactoryRouter);
+app.use("/showroom/factory/product/orderHistory",historyOrderFactoryRouter1);
 app.use('/factory/product', factoryProductRouter)
 
 app.use("/factory/raw/requestOrderHistory",historyReqOrderRouter);

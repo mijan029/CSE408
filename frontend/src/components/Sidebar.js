@@ -50,6 +50,13 @@ const Sidebar = () => {
           </Link>
         </li>
         }
+        {user && user.user.post === "salesmanager" &&
+        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
+          <Link to="showroom/received" className="">
+            Received products
+          </Link>
+        </li>
+        }
         {/* {user && user.user.post === "salesmanager" &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/receive-products" className="">
