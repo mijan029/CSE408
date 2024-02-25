@@ -12,13 +12,20 @@ const Sidebar = () => {
   return (
     <div className=" col-span-1 p-4 h-auto border-r-2 bg-white">
       <ul className="space-y-4 h-auto ">
-        { user && (user.user.post === "productionmanager"|| user.user.post === "salesmanager") &&
+        { user && (user.user.post === "productionmanager") &&
         <li className="p-2 font-medium  hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="factory/production" >
             Products
           </Link>
         </li>
         }
+        {/* { user && (user.user.post === "salesmanager") &&
+        <li className="p-2 font-medium  hover:font-bold hover:bg-gray-100 rounded-lg">
+          <Link to="showroom/product" >
+            Products
+          </Link>
+        </li>
+        } */}
 
         
         
@@ -31,19 +38,19 @@ const Sidebar = () => {
         }
         {user && user.user.post === "salesmanager" &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
-          <Link to="factory/showroom/order-to-factory" className="">
+          <Link to="showroom/order-to-factory" className="">
             Order to Factory
           </Link>
         </li>
         }
         {user && user.user.post === "salesmanager" &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
-          <Link to="factory/showroom/order" className="">
+          <Link to="showroom/order" className="">
             Orders
           </Link>
         </li>
         }
-        {user && user.user.post === "salesmanager" &&
+        {/* {user && user.user.post === "salesmanager" &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/receive-products" className="">
             Receive Products
@@ -56,7 +63,7 @@ const Sidebar = () => {
             Sell History
           </Link>
         </li>
-        }
+        } */}
         
         {/* <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/employees" className="">

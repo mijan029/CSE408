@@ -1,8 +1,10 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 
 const OrderShowroom = ()=>{
+    const {user} = useAuthContext()
     const [orders, setOrders] = useState([])
     useEffect(()=>{
         fetchRequests()
@@ -23,9 +25,9 @@ const OrderShowroom = ()=>{
 
             <div className="flex flex-col  ml-10 mr-20 col-span-2">
                         {
-                        orders.map( item=>(
+                        orders.map(item=>(
     
-                                    <div className=" rounded-lg my-5 p-5 bg-white">
+                                    (user.user.branch_id === item.branch_id) &&    <div className=" rounded-lg my-5 p-5 bg-white">
                                         <p className="text-gray-500 my-2"><span className="font-bold text-black mr-2">Id:</span> {item._id}</p>
                                         <p className="text-gray-500 my-2"><span className="font-bold text-black mr-2">Request Date:</span> {new Date(item.orderDate).toLocaleString('en-US',{
                                                             day: 'numeric',
