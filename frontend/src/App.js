@@ -29,6 +29,10 @@ import RequestProduction from './pages/RequestProduction';
 import RequestRaw from './pages/RequestRaw';
 import RawUseHistory from './pages/RawUseHistory';
 import ProduceHistory from './components/ProduceHistory';
+import ProductPageShowroom from './pages/ProductPageShowroom';
+import OrderShowroom from './pages/OrderShowroom';
+import OrderProduction from './pages/OrderProduction';
+import ProductSentHistory from './pages/ProductSentHistory';
 
 
 function App() {
@@ -52,7 +56,7 @@ function App() {
 
                   <Route path = '/admin/products/sell' element = {<SellPage />} />
 
-                  <Route path = '/factory/product' element = {<ProducPage />}/>
+                 
 
                   <Route 
                         path = '/admin/sell-history'
@@ -83,6 +87,11 @@ function App() {
                     element={<EmployeePerformancePage />}
                   />
 
+                  {/* Showroom Routes */}
+
+                  <Route path = "/factory/showroom/Order" element = {<OrderShowroom />}/>
+                  <Route path = "factory/showroom/order-to-factory" element = {<ProductPageShowroom />} />
+
 
 
                   {/* These route for raw side */}
@@ -95,6 +104,9 @@ function App() {
                   <Route path="/login" element={<Login />} />   
 
                   {/* These routes for production sites */}
+                  <Route path = "/factory/production/orderHistory" element = {<ProductSentHistory />}/>
+                  <Route path = "/factory/production/Order" element = {<OrderProduction />}/>
+                  <Route path = '/factory/production' element = {<ProducPage />}/>
                   <Route path = "/factory/production/produceHistory" element = {<ProduceHistory/>} />
                   <Route path = "/factory/production/raws" element = {<RawPageProduction/>} />
                   <Route path = "/factory/production/requests" element = {<RequestProduction/>} />
