@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors');
-const productRouter = require('./routers/Sales/router')
+//const productRouter = require('./routers/Sales/router')
 //const sellRoutes = require("./routes/showroom/sellRoutes");
 
 const employeeRoutes = require("./routers/employee/employeeRoutes");
@@ -15,6 +15,8 @@ const rawRouter = require('./routers/production/rawRouter')
 const historyPurchaseRawRouter = require('./routers/production/historyPurchaseRawRouter')
 const historyReqOrderRouter = require('./routers/production/historyReqOrderRouter')
 const userRoutes = require('./routers/userRoutes')
+
+const productRouter = require('./routers/Sales/productRouter')
 
 
 const app = express()
@@ -46,6 +48,7 @@ app.use("/employeesPerformance", employeePerformanceRoutes);
 app.use("/factory/raw/requestOrderHistory",historyReqOrderRouter);
 app.use("/factory/raw/purchaseHistory",historyPurchaseRawRouter);
 app.use("/factory/raw",rawRouter);
+app.use("/showroom/product", productRouter);
 app.use("/user", userRoutes);
 
 
