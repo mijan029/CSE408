@@ -19,6 +19,10 @@ const schema = new Schema(
             type: Number,
             required: true
         },
+        branch_id:{
+            type: String,
+            required: false
+        }
  
 
     },

@@ -38,6 +38,13 @@ const Sidebar = () => {
         }
         {user && user.user.post === "salesmanager" &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
+          <Link to="showroom/:id/product" className="">
+            Products
+          </Link>
+        </li>
+        }
+        {user && user.user.post === "salesmanager" &&
+        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="showroom/order-to-factory" className="">
             Order to Factory
           </Link>

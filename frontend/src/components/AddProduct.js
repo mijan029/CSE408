@@ -9,7 +9,7 @@ const AddProduct = ({onSetProduct}) => {
     const [error, setError] = useState(null)
     const categoryList = ["Juice", "Misty", "Curd", "Butter", "Cheese", "Milk", "Yogurt", "Ice Cream", "Ghee", "Paneer", "Lassi", "Sweets"]
 
-  
+    const showroomIdList = [1, 2]
 
 
   const handleSubmit = (e) => {
@@ -27,6 +27,18 @@ const AddProduct = ({onSetProduct}) => {
         setError("Please check the input fields")
         console.error('Error adding product:', error);
       });
+      
+      showroomIdList.map((id) => {
+        axios.post(`/showroom/${id}/product`, {category:category, name:name, price:price, inStock:0, branch_id:id})
+          .then((response) => {
+            console.log(response.data)
+            console.log(id)
+          })
+          .catch((error) => {
+            console.error('Error adding product to showroom', error);
+          });
+      })
+
       console.log("hello mijan in prodcut")
   };
 

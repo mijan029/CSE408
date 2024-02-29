@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 
 const UpdateProduct = ({product, onSetStatus, fetchProducts}) => {
+    
     const [category, setCategory] = useState([""])
     const [name,setName] = useState('')
     const [price,setPrice] = useState("")
     const [inStock,setInStock] = useState("")
+    const showroomIdList = [1, 2]
 
   useEffect(()=>{
     console.log("eikhane ashce?")
@@ -18,6 +20,8 @@ const UpdateProduct = ({product, onSetStatus, fetchProducts}) => {
     }).catch(error=>{
         console.log(error)
     })
+
+    
   },[product])
   
 
@@ -30,6 +34,32 @@ const UpdateProduct = ({product, onSetStatus, fetchProducts}) => {
     .catch((error) => {
         console.error('Error adding product:', error);
     });
+    
+    showroomIdList.map((id) => {
+
+      axios.get(`/showroom/${id}/product/`)
+      .then(response=>{
+          response.data.map((item)=>{
+              if(item.name === name && item.category === category){
+                  axios.put(`/showroom/${id}/product/${item._id}`, {name:name, price:price})
+                  .then((response) => {
+                  })
+                  .catch((error) => {
+                    console.error('Error adding product to showroom', error);
+                  });
+              }
+              console.log(item)
+              console.log(id)
+          }
+          )
+      }).catch(error=>{
+          console.log(error)
+      })
+
+
+      
+    })
+
     onSetStatus("Add")
   };
 

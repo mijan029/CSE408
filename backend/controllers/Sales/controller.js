@@ -16,7 +16,8 @@ const addNewProduct = async (req, res) => {
 // get all products
 const allProducts = async (req,res)=>{
     //console.log("hiii")
-    const all = await productModel.find()
+    console.log("bal amar", req.query)
+    const all = await productModel.find({branch_id: 1})
     if(!all){
         return res.status(400).json({error: 'There is no product in the table right now'});
     }

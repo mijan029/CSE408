@@ -14,11 +14,13 @@ const historyProduceProductRouter = require('./routers/production/historyProduce
 const historyOrderFactoryRouter = require('./routers/production/historyOrderFactoryRouter')
 const factoryProductRouter = require('./routers/production/factoryProductRouter')
 
+
 const rawRouter = require('./routers/production/rawRouter')
 const historyPurchaseRawRouter = require('./routers/production/historyPurchaseRawRouter')
 const historyReqOrderRouter = require('./routers/production/historyReqOrderRouter')
 const userRoutes = require('./routers/userRoutes')
 
+const salesRoutes = require('./routers/Sales/router')
 
 const app = express()
 
@@ -43,6 +45,9 @@ app.use("/accounts", employeeAccountRoutes);
 //attendance routes
 app.use("/employeesAttendance", employeeAttendanceRoutes);
 app.use("/employeesPerformance", employeePerformanceRoutes);
+
+//Showroom routes
+app.use("/showroom/:id/product", salesRoutes);
 
 //production routes
 app.use("/factory/product/produceHistory",historyProduceProductRouter);
