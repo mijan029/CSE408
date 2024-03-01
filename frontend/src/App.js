@@ -55,7 +55,7 @@ function App() {
 
                   <Route path = '/admin/products/cart' element = {<Cart />}/>
 
-                  <Route path = '/admin/products/sell' element = {<SellPage />} />
+                  
 
                  
 
@@ -89,6 +89,7 @@ function App() {
                   />
 
                   {/* Showroom Routes */}
+                  <Route path = '/showroom/:id/sell' element = {<SellPage />} />
                   <Route path = "/showroom/:id/product" element = {<ShowroomProduct />} />
                   <Route path = "/showroom/Order" element = {<OrderShowroom />}/>
                   <Route path = "/showroom/order-to-factory" element = {<ProductPageShowroom />} />

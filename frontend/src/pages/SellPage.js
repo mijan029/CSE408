@@ -1,204 +1,129 @@
-import {useEffect, useState } from "react";
-import SellProduct from "../components/SellProduct";
-import {useNavigate} from 'react-router-dom'
-import  axios  from "axios"
+import { useEffect, useState } from "react"
+import axios from "axios"
+import SearchBar from "../components/Searchbar"
+import { useAuth } from "../context/AuthContext"
 
 const SellPage = ()=>{
-     const navigate = useNavigate()
-     const [customerName, setCustomerName] = useState("")
-     const [customerContact, setCustomerContact] = useState("")
+    const [raws, setRaws] = useState([])
+    const [keyWord, setKeyWord] = useState('')
+    const [requestList, setRequestList] = useState([])
+    const [OnBoard, setOnBoard] = useState([])
+    // status can be None, Update, Purchase, Add
+    const { user }= useAuth()
+    //const token= user.token
+    //console.log(user)
 
-     //const [sellHistory, setSellHistory] = useState([])
-     var sellHistory=[]
     
-     const [products, setProducts] = useState([])
-     const [Cart, setCart] = useState([])
+    const fetchRaws = async () => {
+        let showroomId = user.user.branch_id;
+        await axios.get(`/showroom/${user.user.branch_id}/product`,{
+            params : {showroomId}
+            //params: {startDate,endDate}
+        })
+        .then(response=>{
+            setRaws(response.data)
+            })
+            .catch(error=>{
+                console.log(error)
+                });
+        setOnBoard(Array(raws.length).fill(false))
+        setRequestList([])
+    };
+    
+  
 
-    //const [showCart, setShowCart] = useState(false)
-    const [quantities, setQuantities] = useState(Array(products.length).fill(0));
+    // const fetchRaws = async () => {
+    //     axios.get('/factory/raw',{
+    //         // headers: {
+    //         //     Authorization: `Bearer ${ user.token }`
+    //         // }
+    //     })
+    //     .then(response =>{
+    //         setRaws(response.data)
+    //     }
+    //     ).catch(error=>{
+    //         console.log(error)
+    //     })
+    //     setOnBoard(Array(raws.length).fill(false))
+    //     setRequestList([])
+    // }
 
     useEffect(()=>{
-        fetchProducts()
-        setQuantities(Array(products.length).fill(0))
+        fetchRaws();
     },[])
 
-    //setQuantities(Array(products.length).fill(0))
-    console.log(quantities)
 
-    const handleQuantityChange = (product, quantity) => {
-        console.log(quantities)
-        // setQuantities((prevQuantities) =>
-        //   prevQuantities.map((quantity, index) =>
-        //     products[index].id === productId ? newQuantity : quantity
-        //   )
-        // );
 
-        setCart([...Cart,{product,quantity}])
-      };
-
-      const handleRemoveCart = (product, quantity) => {
-        console.log(quantities)
-        // setQuantities((prevQuantities) =>
-        //   prevQuantities.map((quantity, index) =>
-        //     products[index].id === productId ? newQuantity : quantity
-        //   )
-        // );
-
-        const newCart = Cart.filter(e=>(
-            e.product._id !== product._id
-        ))
-        setCart(newCart)
-
-        //setCart([...Cart,{product,quantity}])
-      };
-
-      
-    const fetchProducts = async ()=>{
-            
-        const response = await fetch('/admin/products');
-        const json = await response.json();
-        
-        console.log(json)
-
-        if(response.ok){
-            setProducts(json)
-        }
-    }
-
-    const handleUpdateProduct = async (newProduct) => {
-        try {
-          const response = await axios.put(`/admin/products/${newProduct._id}`, newProduct);
-          console.log('Product updated:', response.data);
-          // Update the UI or perform additional actions
-        } catch (error) {
-          console.error('Failed to update product:', error);
-          // Handle the error or show an error message
-        }
-      };
-
-      const createSale = (val)=>{
-        sellHistory = [...sellHistory,  val]
-      }
-
-    const handleSell = async () =>{
-        Cart.map(item=>{
-            //console.log(quantities[index])
-            // if(quantities[index]>0 && quantities[index]<=product.quantity){
-            //     product.quantity -= quantities[index]
-            //     handleUpdateProduct(product)
-            // }
-            //console.log(item.quantity)
-            const val  = {
-                name: item.product.name,
-                price: item.product.price,
-                quantity: item.quantity,
-                price: item.product.price
-
-            } 
-            if(item.product.quantity>=item.quantity){
-                item.product.quantity-=item.quantity
-                handleUpdateProduct(item.product)
-            }
+    const onRequest = (raw)=>{
+        //setStatus("Purchase")
+        var ase = false
+        var filteredList = requestList.filter(e=>{
+            if(e._id===raw._id ) {console.log(ase); ase=true; return false}
+            else return true;
         })
 
-        fetchProducts()
-
-        console.log(sellHistory)
-
-        console.log(sellHistory)
-        
-        try {
-            const response = await axios.post(`/admin/products/sale/add/`,{
-                customerName: customerName,
-                customerContact: customerContact,
-                items: sellHistory
-            });
-            console.log('Product updated:', response.data);
-            // Update the UI or perform additional actions
-          } catch (error) {
-            console.error('Failed to update product:', error);
-            // Handle the error or show an error message
-          }
-
-
-        navigate('/admin/products')
+        ase===false?setRequestList([...filteredList,raw]):setRequestList(filteredList)
 
     }
 
-    // const handleCartClick = async ()=>{
-    //     setAddCart(!addCart)
-  
-        
-    //   }
-
-     return (
-         
-            <div className="max-w-3xl mx-auto px-4">
+    const handleClick = (raw,index)=>{
+        onRequest(raw)
+        let newOnBoard = OnBoard
+        newOnBoard[index] = !OnBoard[index]
+        setOnBoard(newOnBoard)
+    }
 
 
+    return (
+        <div className='grid grid-cols-2 h-dvh'>
+            <div className="col-span-1 mx-10">
 
-                <div className="my-20 ml-10">
-                    <div>
-                        <span className="text-red-500 font-bold">*</span> <label for = "customer_name" className="text-xl font-medium mr-4">Customer Name:</label>
-                        <input 
-                            className="border-2 rounded-md border-gray-500  py-1 pl-6 ml-4"
-                            type="String"
-                            name="customer_name"
-                            placeholder="Faisal Zaman"
-                            onChange={(e)=>{
-                                setCustomerName(e.target.value)
-                            }}
-                        /> 
-                    </div>
-
-                    <div className="mt-3">
-                    <span className="text-red-500 font-bold">*</span>  <label for = "customer_contact_info" className="text-xl font-medium">Customer Contact:</label>
-                        <input 
-                            className="border-2 rounded-md border-gray-500  py-1 pl-6 ml-4"
-                            type="String"
-                            name="customer_contact_info"
-                            placeholder="+880.. or ..@gmail.com"
-                            onChange={(e)=>{
-                                setCustomerContact(e.target.value)
-                            }}
-                        />    
-                    </div>        
-                </div>
-
-
-
-
+                    <SearchBar setKeyWord={setKeyWord}/>
                     
-                            <div>
+                {
+                    
+                    raws && raws.map((raw,index) => (
 
-                                {
-                                    products && products.map((product,index) => (
+                            raw.name.match(keyWord) && (
+
+                                <div className="bg-white rounded-lg my-4 p-3">
+           
+                                    <div className="flex">
+                                        <div className="ml-2">
+                                            <p className="text-xl font-semibold text-blue-900">{raw.category}</p>
+                                            <p className="text-lg font-semibold text-blue-500">{raw.name}</p>
+                                            <p className="text-gray-600">Unit Price: { raw.price }</p>
+                                            <p className="text-gray-600">inStock: { raw.inStock }</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex justify-end my-2">
                                         
-                                        <SellProduct product={product} handleQuantityChange={handleQuantityChange} handleRemoveCart = {handleRemoveCart} />
                                            
-                                        )
-                                    )
-                                }
+                                        <button  onClick={()=>handleClick(raw, index)}
+                                            className={`ml-2 px-4 py-2 bg-blue-500 text-white rounded ${OnBoard[index] && "shadow-lg bg-pink-500"}`}
+                                        >  {OnBoard[index] ? "OnBoard":"Get"}  </button>
 
-                                <div className="flex justify-between">
-                                    <button 
-                                        className="mt-2 ml-20 p-2 px-4 border-2 rounded-md border-blue-700 text-white hover:bg-blue-800 bg-blue-700"
-                                        onClick={handleSell}
-                                    > Sell </button>
+                                     
+                                    </div>
+
                                 </div>
-
-
-
-                            </div>
-                            
-                                
-                    
-                            
-                    
-
+                                )
+                        )
+                    )
+                }
+                
             </div>
-        
-     )
+
+            <div className="col-span-1 mx-3">
+                {
+                      <SellPage requestList={requestList} fetchRaws={fetchRaws}/>
+                }
+                
+            </div>
+
+        </div>
+    )
 }
 
 export default SellPage

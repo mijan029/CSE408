@@ -89,6 +89,22 @@ const OrderShowroom = ()=>{
                                                         onClick={ async ()=>{
                                                                 const updatedItem = {...item, status:(item.status==="Approved"?"Successful":"Cancelled")}
                                                                 await axios.put(`/factory/product/orderHistory/${item._id}`,updatedItem)
+                                                                
+                                                                await axios.get(`/showroom/${user.user.branch_id}/product`)
+                                                                .then((response)=>{
+
+                                                                    item.Materials.map((e)=>{
+                                                                        response.data.map(f=>{
+                                                                            if(e.name===f.name && e.category===f.category){
+                                                                                axios.put(`/showroom/${user.user.branch_id}/product/${f._id}`, {...f, inStock:f.inStock+e.orderAmount})
+                                                                            }
+                                                                        })
+                                                                    })
+                                                                        
+                                                                }).catch((error)=>{
+                                                                    console.log(error);
+                                                                })
+
                                                                 fetchRequests()
                                                                             } }
                                                         >

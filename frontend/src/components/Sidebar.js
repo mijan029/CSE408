@@ -31,7 +31,7 @@ const Sidebar = () => {
         
         {user && user.user.post === "cashier" &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
-          <Link to="/admin/products/sell" className="">
+          <Link to="/showroom/:id/sell" className="">
             Sell
           </Link>
         </li>
