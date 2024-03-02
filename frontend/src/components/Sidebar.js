@@ -181,6 +181,12 @@ const Sidebar = () => {
           </Link>
         </li>
         }
+        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
+          <Link to="/profile" className="">
+          Profile
+          </Link>
+        </li>
+
 
         
 
