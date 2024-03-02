@@ -33,6 +33,8 @@ import ProductPageShowroom from './pages/ProductPageShowroom';
 import OrderShowroom from './pages/OrderShowroom';
 import OrderProduction from './pages/OrderProduction';
 import ProductSentHistory from './pages/ProductSentHistory';
+import ProfilePage from './pages/ProfilePage';
+import EditProfilePage from './pages/EditProfilePage';
 
 
 function App() {
@@ -110,7 +112,8 @@ function App() {
                   <Route path = "/factory/production/produceHistory" element = {<ProduceHistory/>} />
                   <Route path = "/factory/production/raws" element = {<RawPageProduction/>} />
                   <Route path = "/factory/production/requests" element = {<RequestProduction/>} />
-
+                  <Route path = "/profile" element = {<ProfilePage/>} />
+                  <Route path = "/profile/edit" element = {<EditProfilePage/>} />
 
                 </Routes>
               </div>

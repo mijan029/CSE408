@@ -32,7 +32,38 @@ const signupUser = async (req, res) => {
     }
   }
 
+  const getAllUser = async (req, res) => {
+    try {
+      const user = await User.find({});
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(400).json({ error: error.message});
+    }
+  }
+
+  const updateUser = async (req, res) => {
+    try {
+      // Assuming the user's ID is passed as a URL parameter and accessible via req.params.id
+      const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });  
+  
+      if (!user) {
+        // If no user is found with the given ID, send a 404 response
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Respond with the updated user document
+      res.status(200).json(user);
+    }
+    catch (error) {
+      // Catch any errors that occur during the update process
+      res.status(400).json({ error: error.message });
+    }
+  }
+  
+
   module.exports = {
     signupUser,
-    loginUser
+    loginUser,
+    getAllUser,
+    updateUser
   }
