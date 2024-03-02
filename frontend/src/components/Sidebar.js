@@ -63,14 +63,21 @@ const Sidebar = () => {
             Receive Products
           </Link>
         </li>
-        }
-        {user &&( user.user.post === "salesmanager"||user.user.post === "cashier") &&
+        } */}
+        {user &&(user.user.post === "cashier") &&
         <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
-          <Link to="admin/sell-history" className="">
+          <Link to="showroom/:id/sellHistory" className="">
             Sell History
           </Link>
         </li>
-        } */}
+        }
+        {user &&(user.user.post === "salesmanager") &&
+        <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
+          <Link to="showroom/sellHistory" className="">
+            Sell History
+          </Link>
+        </li>
+        }
         
         {/* <li className="p-2 font-medium hover:font-bold hover:bg-gray-100 rounded-lg">
           <Link to="/employees" className="">

@@ -90,12 +90,21 @@ const OrderShowroom = ()=>{
                                                                 const updatedItem = {...item, status:(item.status==="Approved"?"Successful":"Cancelled")}
                                                                 await axios.put(`/factory/product/orderHistory/${item._id}`,updatedItem)
                                                                 
-                                                                await axios.get(`/showroom/${user.user.branch_id}/product`)
+                                                                let showroomId = user.user.branch_id
+                                                                await axios.get(`/showroom/${user.user.branch_id}/product`,
+                                                                    {
+                                                                        params : {showroomId}
+                                                                    }
+                                                                )
                                                                 .then((response)=>{
-
+                                                                    console.log(response.data)
+                                                                    console.log(user.user.branch_id)
+                                                                    const data = response.data.filter(e=>e.branch_id===user.user.branch_id)
+                                                                    console.log(data)
                                                                     item.Materials.map((e)=>{
-                                                                        response.data.map(f=>{
+                                                                        data.map(f=>{
                                                                             if(e.name===f.name && e.category===f.category){
+                                                                                console.log("vairevaietokahinikn")
                                                                                 axios.put(`/showroom/${user.user.branch_id}/product/${f._id}`, {...f, inStock:f.inStock+e.orderAmount})
                                                                             }
                                                                         })

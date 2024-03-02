@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const SellTable = ({requestList, fetchRaws}) => {
 
@@ -7,6 +8,7 @@ const SellTable = ({requestList, fetchRaws}) => {
   const [grandTotal, setGrandTotal] = useState(0)
   const [customerName, setCustomerName] = useState("")
   const [customerContact, setCustomerContact] = useState("")
+  const {user} = useAuthContext()
 
   
   useEffect(()=>{
@@ -29,13 +31,32 @@ console.log(items)
 
   const handleClick = async ()=>{
 
-    await axios.post('/factory/raw/requestOrderHistory',{status:'Requested' ,rawMaterials:items, grandTotal:grandTotal})
+    await axios.post(`/showroom/${user.user.branch_id}/sell`,{customerName:customerName, customerContact:customerContact,branch_id:user.user.branch_id, cashier_id:user.user.email ,products:items, grandTotal:grandTotal})
     .then(response=>{
       console.log(response.data)
     }).catch(error=>{
       console.log(error)
     })
 
+    let showroomId = user.user.branch_id;
+    const response = await axios.get(`/showroom/${user.user.branch_id}/product`,{
+      params : {showroomId}
+    });
+    const filteredProducts = response.data.filter(product => product.branch_id === user.user.branch_id);
+
+    items.forEach(item => {
+      const product = filteredProducts.find(p => p.name === item.name && p.category===item.category);
+      if (product) {
+        product.inStock-= item.sellAmount;
+        axios.put(`/showroom/${user.user.branch_id}/product/${product._id}`, product)
+          .then(response => console.log(response.data))
+          .catch(error => console.log(error));
+      }
+    });
+
+
+    setCustomerName("")
+    setCustomerContact("")
     fetchRaws();
   }
 
@@ -50,7 +71,7 @@ console.log(items)
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="customerName"
                     type="text"
-                    placeholder="Customer Name"
+                    placeholder=""
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
                 />
@@ -63,7 +84,7 @@ console.log(items)
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="customerContact"
                     type="text"
-                    placeholder="Customer Contact"
+                    placeholder="E-mail or phone"
                     value={customerContact}
                     onChange={(e) => setCustomerContact(e.target.value)}
                 />
@@ -111,7 +132,7 @@ console.log(items)
                 
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 onClick={handleClick}>
-                Request </button>
+                Sell </button>
 
                 <button
                 type="submit"

@@ -1,112 +1,119 @@
-import React, { useState, useEffect } from 'react';
+import axios from "axios"
+import { useEffect, useState } from "react"
 
-const SellHistoryPage = () => {
-  const [sellRecords, setSellRecords] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+import SearchBar from "../components/Searchbar"
+import SearchByDate from "../components/SearchByDate"
+import DeleteByDate from "../components/DeleteByDate"
+import { useAuthContext } from "../hooks/useAuthContext"
 
-  useEffect(() => {
-    // Fetch the sell records from the backend API
-    const fetchSellRecords = async () => {
-      try {
-        const response = await fetch('/admin/products/history/sale'); // Replace with your backend API endpoint
-        const data = await response.json();
-        // const data= [
-        //     {
-        //         "_id": "65c239b26313eea513c1777f",
-        //         "items": [
-        //             {
-        //                 "product_name": "curd",
-        //                 "product_price": 50,
-        //                 "product_quantity": 1
-        //             },
-        //             {
-        //                 "product_name": "misti",
-        //                 "product_price": 60,
-        //                 "product_quantity": 1
-        //             }
-        //         ],
-        //         "customerName": "zaman",
-        //         "customerContact": "01756976854",
-        //         "createdAt": "2024-02-06T13:52:51.348Z",
-        //         "updatedAt": "2024-02-06T13:52:51.348Z",
-        //         "__v": 0
-        //     }
-        // ]  
-        setSellRecords(data);
-      } catch (error) {
-        console.error('Error fetching sell records:', error);
-      }
-    };
+const ProductSentHistory = ()=>{
+    const {user} = useAuthContext()
+    const [history, setHistory] = useState([])
+    const [keyWord, setKeyWord] = useState('')
+    useEffect(()=>{
+         fetchHistory()
+    },[])
 
-    fetchSellRecords();
-  }, []);
+    const fetchHistory = ()=>{
+        axios.get(`/showroom/${user.user.branch_id}/sell`)
+        .then(response=>{
+            setHistory(response.data.filter(e=>e.branch_id===user.user.branch_id && e.cashier_id===user.user.email))
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+    }
 
-  const calculateTotalPrice = (items) => {
-    return items.reduce((total, item) => total + item.quantity * item.price, 0);
-  };
+    return (
+        <div className="grid grid-cols-3">
 
-  const filteredSellRecords = sellRecords.filter(
-    (sellRecord) => true
-      // sellRecord.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      // sellRecord.items.some((item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
+            <div className="flex flex-col  ml-10 mr-20 col-span-2">
+                    <SearchBar setKeyWord={setKeyWord} />
+                        {
+                        history.map( item=>(
+    // && (user.user.post==="productionmanager"||user.user.branch_id === item.branch_id )
+                                    ((item.products.filter(e=> (e.name.match(keyWord)) )).length ) ?  (<div className=" rounded-lg my-5 p-5 bg-white">
+                                       <p className="text-gray-500 my-2"><span className="font-bold text-black mr-2">Id:</span>{item._id}</p>
+                                        {/* <p className="text-gray-500 my-2"><span className="font-bold text-black mr-2">Showroom Id:</span>{item.branch_id}</p> */}
+                                        <p className="text-gray-500 my-2"><span className="font-bold text-black mr-2">Customer Name:</span>{item.customerName}</p>
+                                        <p className="text-gray-500 my-2"><span className="font-bold text-black mr-2">Customer Contact:</span>{item.customerContact}</p>
 
-  return (
-    <div className="container mx-auto p-4">
-      <div className="flex justify-end mb-4">
-        <input
-          type="text"
-          placeholder="Search by customer name or product name"
-          className="px-4 py-2 border border-gray-200 rounded"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
-      <h1 className="text-2xl font-bold mb-4">Sell History</h1>
-      {filteredSellRecords.map((sellRecord, index) => (
-        <div key={index} className="mb-8">
-          <div className="flex mb-2">
-            <span className="font-bold">Created At:</span>
-            <p className="ml-2">{sellRecord.createdAt}</p>
-          </div>
-          <div className="flex mb-2">
-            <span className="font-bold">Customer Name:</span>
-            <p className="ml-2">{sellRecord.customerName}</p>
-          </div>
-          <div className="flex mb-4">
-            <span className="font-bold">Customer Contact:</span>
-            <p className="ml-2">{sellRecord.customerContact}</p>
-          </div>
-          <table className="min-w-full bg-white border border-gray-200 mb-4">
-            <thead>
-              <tr>
-                <th className="px-6 py-3 border-b border-gray-200">Product Name</th>
-                <th className="px-6 py-3 border-b border-gray-200">Quantity</th>
-                <th className="px-6 py-3 border-b border-gray-200">Price</th>
-                <th className="px-6 py-3 border-b border-gray-200">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sellRecord.items.map((item, itemIndex) => (
-                <tr key={itemIndex}>
-                  <td className="px-6 py-4 border-b border-gray-200">{item.name}</td>
-                  <td className="px-6 py-4 border-b border-gray-200">{item.quantity}</td>
-                  <td className="px-6 py-4 border-b border-gray-200">{item.price}</td>
-                  <td className="px-6 py-4 border-b border-gray-200">
-                    {item.quantity * item.price}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="flex justify-end">
-            <span className="font-bold">Total Price:</span>
-            <p className="ml-2">{calculateTotalPrice(sellRecord.items)}</p>
-          </div>
+                                        <p className="text-gray-500 my-2"><span className="font-bold text-black mr-2">Sell Date:</span> {new Date(item.sellDate).toLocaleString('en-US',{
+                                                            day: 'numeric',
+                                                            month: 'short',
+                                                            year: 'numeric',
+                                                            hour: 'numeric',
+                                                            minute: 'numeric',
+                                                            second: 'numeric',
+                                                            hour12: true
+                                                    })}</p>
+                                        
+                                        {
+                                            <div className="overflow-x-auto mt-14 bg-white rounded">
+                                                <table className="min-w-full table-auto">
+                                                <thead className="border-b">
+                                                    <tr>
+                                                    <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">Category</th>
+                                                    <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">Name</th>
+                                                    <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">Amount</th>
+                                                    <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {item.products.map((raw) => (
+                                                        <tr key={raw.id} className="border-b">
+                                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{raw.category}</td>
+                                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{raw.name}</td>
+                                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                        {raw.sellAmount}
+                                                        </td>
+                                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{raw.total}</td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                                </table>
+
+                                                <div className='flex justify-between px-6 py-4 font-bold border-t-2 border-black'>
+                                                    <div className="whitespace-nowrap  text-gray-900">Grand Total:</div>
+                                                    <div className="mr-14">{item.grandTotal}</div>
+                                                </div>
+                                            
+                                                <div className='m-5 float-right'>
+                                            
+                                                    <button
+                                                        type="submit"
+                                                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mx-5"
+                                                        onClick={ async ()=>{await axios.delete(`/showroom/${user.user.branch_id}/sell/${item._id}`)
+                                                                                fetchHistory()
+                                                                            } }
+                                                    >
+                                                    Delete </button>
+                                    
+                                    
+                                                </div>
+                                        
+                                        
+                                            </div>
+                                    
+                                        }
+                            
+
+                                </div>) : <div></div>
+                            )
+                            
+
+                            )
+                        }
+                    
+            </div>
+
+            <div className="col-span-1 flex flex-col">
+                <SearchByDate setHistory={setHistory} api={`showroom/${user.user.branch_id}/sell`} />
+                <DeleteByDate fetchHistory={fetchHistory} api={`showroom/${user.user.branch_id}/sell`} />
+            </div>
+
         </div>
-      ))}
-    </div>
-  );
-};
+    )
+}
 
-export default SellHistoryPage;
+export default ProductSentHistory

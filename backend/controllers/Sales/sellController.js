@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const addNewProduct = async (req, res) => {
     try{
         const newProduct = await sellModel.create(req.body)
+        console.log("I received baler kaj")
+        console.log(newProduct)
         res.status(200).json(newProduct)
     }catch(error){
         res.status(400).json({error : "Please fill all the field with approprite values"})

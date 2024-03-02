@@ -17,6 +17,10 @@ const SellSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    sellDate: {
+        type: Date,
+        default: Date.now
+    },
     products: [{
         id: {
             type: String,

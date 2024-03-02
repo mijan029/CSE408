@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import SearchBar from "../components/Searchbar"
 import { useAuth } from "../context/AuthContext"
+import SellTable from "../components/SellTable"
 
 const SellPage = ()=>{
     const [raws, setRaws] = useState([])
@@ -117,7 +118,7 @@ const SellPage = ()=>{
 
             <div className="col-span-1 mx-3">
                 {
-                      <SellPage requestList={requestList} fetchRaws={fetchRaws}/>
+                      <SellTable requestList={requestList} fetchRaws={fetchRaws}/>
                 }
                 
             </div>

@@ -34,6 +34,7 @@ import OrderShowroom from './pages/OrderShowroom';
 import OrderProduction from './pages/OrderProduction';
 import ProductSentHistory from './pages/ProductSentHistory';
 import ShowroomProduct from './pages/ShowroomProduct';
+import SellHistoryManager from './pages/SellHistoryManager';
 
 
 function App() {
@@ -59,10 +60,7 @@ function App() {
 
                  
 
-                  <Route 
-                        path = '/admin/sell-history'
-                        element = {<SellHistoryPage />}
-                  />
+                  
                   <Route path="/employees" element={<EmployeePage />} />
 
                   <Route
@@ -89,10 +87,12 @@ function App() {
                   />
 
                   {/* Showroom Routes */}
+                  <Route path = 'showroom/:id/sellHistory' element = {<SellHistoryPage />} />
                   <Route path = '/showroom/:id/sell' element = {<SellPage />} />
                   <Route path = "/showroom/:id/product" element = {<ShowroomProduct />} />
                   <Route path = "/showroom/Order" element = {<OrderShowroom />}/>
                   <Route path = "/showroom/order-to-factory" element = {<ProductPageShowroom />} />
+                  <Route path = "/showroom/sellHistory" element = {<SellHistoryManager />} />
 
 
 
