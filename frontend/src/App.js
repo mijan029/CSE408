@@ -37,10 +37,11 @@ import ProfilePage from './pages/ProfilePage';
 import EditProfilePage from './pages/EditProfilePage';
 import ShowroomProduct from './pages/ShowroomProduct';
 import SellHistoryManager from './pages/SellHistoryManager';
-
+import { useAuthContext } from './hooks/useAuthContext';
 
 function App() {
   
+  const { user } = useAuthContext();
   return (
     <div className='h-full' style={{backgroundColor:'rgb(236,244,244)'}}>
       <BrowserRouter>
@@ -49,7 +50,7 @@ function App() {
             <Navbar />
         </div>
         <div className='grid grid-cols-6 h-auto'>
-            <Sidebar />
+           <Sidebar />
 
               <div className='col-span-5 h-auto ml-5 py-4' > 
                 <Routes>
@@ -57,11 +58,6 @@ function App() {
                   <Route path = '/' element = {<Home />}/>
 
                   <Route path = '/admin/products/cart' element = {<Cart />}/>
-
-                  
-
-                 
-
                   
                   <Route path="/employees" element={<EmployeePage />} />
 

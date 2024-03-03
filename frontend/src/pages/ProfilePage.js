@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useNavigate } from 'react-router-dom';
+import { AuthContextProvider } from '../context/AuthContext';
 
 const ProfilePage = () => {
     const { user } = useAuthContext();
@@ -13,6 +14,7 @@ const ProfilePage = () => {
     }
     return (
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+            <AuthContextProvider>
             <div className="p-8">
                 <div className="tracking-wide text-sm text-indigo-500 font-semibold">Name</div>
                 <p className="text-lg font-medium text-black mb-2">{ user.user.name }</p>
@@ -37,6 +39,7 @@ const ProfilePage = () => {
                 Edit
                 </button>
             </div>
+            </AuthContextProvider>
         </div>
     );
 
