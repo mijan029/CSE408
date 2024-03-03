@@ -22,7 +22,7 @@ const Signup = () => {
       <form className="p-10 bg-white rounded flex flex-col space-y-4" onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Email"
+          placeholder="Username"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"

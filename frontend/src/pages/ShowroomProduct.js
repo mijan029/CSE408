@@ -68,6 +68,13 @@ function ShowroomProduct() {
                     <td className="px-6 py-6 whitespace-nowrap text-sm text-gray-500">
                       {product.inStock}
                     </td>
+                    {/* <td className="px-6 py-6 whitespace-nowrap text-sm text-gray-500"> */}
+                      {/* <button type="submit" className="border-2 rounded m-5 p-2" 
+                        onClick={
+                          async ()=>await axios.delete(`/showroom/${user.user.branch_id}/product/${product._id}`)
+                        }
+                      >Delete</button> */}
+                    {/* </td> */}
                   </tr>
                 ))}
               </tbody>
