@@ -37,9 +37,18 @@ import ProfilePage from './pages/ProfilePage';
 import EditProfilePage from './pages/EditProfilePage';
 import ShowroomProduct from './pages/ShowroomProduct';
 import SellHistoryManager from './pages/SellHistoryManager';
+import { useAuthContext } from './hooks/useAuthContext';
+import { useEffect, useState } from 'react';
 
 
 function App() {
+
+  const {user} = useAuthContext()
+  const [uuser, setUuser] = useState(null)
+
+  useEffect(()=>{
+    setUuser(user)
+  },[])
   
   return (
     <div className='h-full' style={{backgroundColor:'rgb(236,244,244)'}}>
@@ -49,12 +58,12 @@ function App() {
             <Navbar />
         </div>
         <div className='grid grid-cols-6 h-auto'>
-            <Sidebar />
+            { (uuser||user) && <Sidebar />}
 
               <div className='col-span-5 h-auto ml-5 py-4' > 
                 <Routes>
 
-                  <Route path = '/' element = {<Home />}/>
+                  <Route path = '/' element = {<Home setUuser={setUuser}/>}/>
 
                   <Route path = '/admin/products/cart' element = {<Cart />}/>
 

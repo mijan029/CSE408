@@ -76,7 +76,7 @@ const SellPage = ()=>{
 
 
     return (
-        <div className='grid grid-cols-2 h-dvh'>
+        <div className='grid grid-cols-2 h-full'>
             <div className="col-span-1 mx-10">
 
                     <SearchBar setKeyWord={setKeyWord}/>
@@ -103,7 +103,7 @@ const SellPage = ()=>{
                                            
                                         <button  onClick={()=>handleClick(raw, index)}
                                             className={`ml-2 px-4 py-2 bg-blue-500 text-white rounded ${OnBoard[index] && "shadow-lg bg-pink-500"}`}
-                                        >  {OnBoard[index] ? "OnBoard":"Get"}  </button>
+                                        >  {OnBoard[index] ? "OnBoard":"Add To Cart"}  </button>
 
                                      
                                     </div>

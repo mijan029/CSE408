@@ -17,7 +17,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate('/');
     // Additional actions upon logout, e.g., redirecting to homepage
   };
   return (
