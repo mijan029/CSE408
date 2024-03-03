@@ -57,7 +57,7 @@ const ProductPageShowroom = ()=>{
 
 
     return (
-        <div className='grid grid-cols-2 h-dvh'>
+        <div className='grid grid-cols-2 h-full'>
             <div className="col-span-1 mx-10">
 
                     <SearchBar setKeyWord={setKeyWord}/>

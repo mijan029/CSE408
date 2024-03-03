@@ -9,7 +9,7 @@ const AddProduct = ({onSetProduct}) => {
     const [error, setError] = useState(null)
     const categoryList = ["Juice", "Misty", "Curd", "Butter", "Cheese", "Milk", "Yogurt", "Ice Cream", "Ghee", "Paneer", "Lassi", "Sweets"]
 
-    const showroomIdList = [1, 2]
+    const showroomIdList = [1, 2, 3, 4, 5, 6, 7, 8]
 
 
   const handleSubmit = (e) => {

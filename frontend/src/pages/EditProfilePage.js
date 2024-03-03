@@ -47,24 +47,24 @@ const EditProfile = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
+    <form onSubmit={handleSubmit} className="  ml-96 justify-center space-y-8 w-1/2">
+      <div className='my-4'>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-        <input type="text" name="name" id="name" value={name} onChange={e => setName(e.target.value)} className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
-      </div>
-      <div>
+        <input type="text" name="name" id="name" value={name} onChange={e => setName(e.target.value)} className="mt-1 block  p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
+      </div >
+      <div className='my-4'>
         <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-        <input type="text" name="email" id="email" value={email} onChange={e => setEmail(e.target.value)} className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
+        <input type="text" name="email" id="email" value={email} onChange={e => setEmail(e.target.value)} className="mt-1 block p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
       </div>
-      <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone</label>
-        <input type="text" name="phone" id="phone" value={phone} onChange={e => setPhone(e.target.value)} className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
+      <div className='my-4'>
+        <span htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone</span>
+        <input type="text" name="phone" id="phone" value={phone} onChange={e => setPhone(e.target.value)} className="mt-1 block  p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
       </div>
-      <div>   
+      <div className='my-4'>   
         <label htmlFor="address" className="block text-sm font-medium text-gray-700">Address</label>
-        <input type="text" name="address" id="address" value={address} onChange={e => setAddress(e.target.value)} className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
+        <input type="text" name="address" id="address" value={address} onChange={e => setAddress(e.target.value)} className="mt-1 block  p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
       </div>
-      <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update Profile</button>
+      <button type="submit" className="flex ml-16  justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update Profile</button>
     </form>
   );
 };

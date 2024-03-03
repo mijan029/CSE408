@@ -19,8 +19,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <form className="p-10 bg-white rounded flex flex-col space-y-4" onSubmit={handleSubmit}>
+    <div className="flex flex-row items-center justify-center min-h-screen  ml-32 mb-20">
+
+      <form className="p-12 bg-white rounded flex flex-col space-y-4" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Email"

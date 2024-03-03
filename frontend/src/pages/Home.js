@@ -1,8 +1,11 @@
 import React from 'react';
+import { useAuthContext } from '../hooks/useAuthContext';
 
-const Home = () => {
+const Home = ({setUuser}) => {
+    const {user} = useAuthContext()
+    setUuser(user)
     return (
-        <div className="flex flex-col items-center justify-center  ">
+        <div className={`flex flex-col items-center justify-center ${user?"":"ml-52"}  `}>
          <h1 className="text-3xl font-bold mb-3 text-blue-500">Welcome To</h1>
 
             <h1 className="text-3xl font-bold mb-10">Production and Sales Management System</h1>
