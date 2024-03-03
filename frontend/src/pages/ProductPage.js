@@ -16,6 +16,7 @@ const ProductPage = ()=>{
     const [updateProduct, setUpdateProduct] = useState(null)
     // status can be None, Update, Purchase, Add
     const { user }= useAuth()
+    const showroomIdList = [1, 2, 3, 4, 5, 6, 7, 8]
     //const token= user.token
     //console.log(user)
 
@@ -27,6 +28,39 @@ const ProductPage = ()=>{
         })
         .then(response =>{
             setProducts(response.data)
+
+            // products.forEach((product)=>{  
+            //     const {category, name, price} = product
+
+
+            // showroomIdList.map(async (id) => {
+
+            //     const responseBranch = await axios.get(`/showroom/${id}/product`,{
+            //     })
+            //     let ase=false
+            //     const nn = responseBranch.data.forEach((pp)=>{
+            //         if(pp.name===name && pp.category===category){
+            //             console.log("Product already exists")
+            //             ase=true
+            //         }
+            //     })
+            //     console.log(ase)
+            //     if(ase===false ){
+            //        await axios.post(`/showroom/${id}/product`, {category:category, name:name, price:price, inStock:0, branch_id:id})
+            //         .then((response) => {
+            //             console.log(response.data)
+            //             console.log(id)
+            //         })
+            //         .catch((error) => {
+            //             console.error('Error adding product to showroom', error);
+            //         });
+            //     }
+
+
+            //   })
+
+            // })
+
         }
         ).catch(error=>{
             console.log(error)

@@ -24,7 +24,7 @@ const Login = () => {
       <form className="p-12 bg-white rounded flex flex-col space-y-4" onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Email"
+          placeholder="Username"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="mt-1 block w-full border-2 border-gray-300 rounded-md  p-2"
